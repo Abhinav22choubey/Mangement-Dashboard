@@ -1,13 +1,17 @@
-import React from 'react'
+import React from "react";
 
-function Frame3() {
+import Frame31 from "./Frame31.jsx";
+export default function Frame3() {
   return (
-    <div>
-      <div>
+    <div className="min-h-screen w-full bg-slate-100 p-4 md:p-6">
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <Frame31/>
+       
 
+       
       </div>
     </div>
-  )
+  );
 }
 
-export default Frame3
