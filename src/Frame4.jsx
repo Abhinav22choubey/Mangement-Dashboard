@@ -2,6 +2,7 @@ import React from "react";
 import Contacts from "./Contacts.jsx";
 import LeadInfo from "./LeadInfo.jsx";
 import InterestedProjects from "./InterestedProject.jsx";
+import FollowUps from "./FollowUps.jsx";
 
 function Frame4() {
   return (
@@ -11,6 +12,7 @@ function Frame4() {
       <div className="w-full md:basis-[70%]">
         <Contacts />
         <InterestedProjects />
+        <FollowUps />
       </div>
 
       {/* Right section */}

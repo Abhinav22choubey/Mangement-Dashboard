@@ -1,0 +1,107 @@
+import { Clock, Eye,Menu, MoreVertical } from "lucide-react";
+import p from "./assets/p5.jpg";
+
+const followUps = [
+  { id: 1, date: "25 Dec, 2025", time: "4:30 PM", by: "Ashish Kumar", status: "Negotiation", nextDate: "26 Dec, 2025", avatar: `${p}` },
+  { id: 2, date: "26 Dec, 2025", time: "11:00 AM", by: "Rohit Sharma", status: "Pending", nextDate: "27 Dec, 2025", avatar: `${p}` },
+  { id: 3, date: "27 Dec, 2025", time: "2:15 PM", by: "Neha Verma", status: "Completed", nextDate: "—", avatar: `${p}` },
+  { id: 4, date: "28 Dec, 2025", time: "10:00 AM", by: "Amit Patel", status: "Negotiation", nextDate: "29 Dec, 2025", avatar: `${p}` },
+  { id: 5, date: "29 Dec, 2025", time: "3:45 PM", by: "Priya Singh", status: "Pending", nextDate: "30 Dec, 2025", avatar: `${p}` },
+  { id: 6, date: "30 Dec, 2025", time: "5:30 PM", by: "Karan Mehta", status: "Completed", nextDate: "—", avatar: `${p}` },
+];
+
+export default function FollowUps() {
+  return (
+    <div className="w-full mt-4 py-4 bg-white overflow-hidden text-sm">
+
+      {/* Header */}
+      <div className="flex items-center justify-between px-5 pb-3 border-b border-gray-200/60">
+        <div className="flex items-center gap-2 font-medium">
+          <Clock size={18} />
+          Follow Ups
+        </div>
+
+        <div className="flex items-center gap-4">
+          <button className="text-blue-500 font-medium">+ Add</button>
+          <button className="bg-blue-500 text-white text-xs px-3 py-1 rounded">
+            See All
+          </button>
+        </div>
+      </div>
+
+      {/* Table Header */}
+      <div className="hidden  md:grid grid-cols-[160px_120px_260px_160px_180px_80px] border-b border-gray-200/60 font-medium">
+        {["Date", "Time", "Followed By", "Status", "Next Date", ""].map((h, i) => (
+          <div
+            key={i}
+            className="px-4 py-3 justify-center flex border-r border-gray-200/60 last:border-r-0"
+          >
+            {h || <Menu size={18} />}
+          </div>
+        ))}
+      </div>
+
+      {/* Rows */}
+      {followUps.map((item) => (
+        <div
+          key={item.id}
+          className="
+            md:grid md:grid-cols-[160px_120px_260px_160px_180px_80px]
+            border-b border-gray-200/60
+            flex flex-col md:flex-none
+          "
+        >
+          <Cell>{item.date}</Cell>
+          <Cell>{item.time}</Cell>
+
+          <Cell>
+            <div className="flex items-center gap-2 min-w-0">
+              <Avatar name={item.by} src={item.avatar} />
+              <span className="truncate">{item.by}</span>
+            </div>
+          </Cell>
+
+          <Cell>{item.status}</Cell>
+          <Cell>{item.nextDate}</Cell>
+
+          <Cell center>
+            <button className="w-9 h-9 bg-blue-500 rounded-full flex items-center justify-center">
+              <Eye size={16} className="text-white" />
+            </button>
+          </Cell>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Cell({ children, center = true }) {
+  return (
+    <div
+      className={`px-4 py-1 border-r border-gray-200/60 last:border-r-0 flex items-center ${
+        center ? "justify-center" : ""
+      }`}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* Avatar component */
+function Avatar({ src, name }) {
+  if (src) {
+    return (
+      <img
+        src={src}
+        alt={name}
+        className="w-7 h-7 rounded-full object-cover"
+      />
+    );
+  }
+
+  return (
+    <div className="w-7 h-7 rounded-full bg-gray-400 flex items-center justify-center text-xs text-white">
+      {name?.[0]}
+    </div>
+  );
+}
