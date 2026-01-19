@@ -7,7 +7,7 @@ export default function Tabs() {
 
   return (
     <div className="w-full flex justify-center mt-6">
-      <div className="w-full max-w-full sm:max-w-[1106px] bg-white px-4 sm:px-6">
+      <div className="w-full max-w-full  bg-white px-4 sm:px-6">
         <div className="flex gap-6 sm:gap-10  relative flex-wrap">
           {tabs.map((tab) => (
             <button

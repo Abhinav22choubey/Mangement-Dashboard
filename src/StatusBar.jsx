@@ -13,8 +13,8 @@ const steps = [
 
 export default function StatusProgressBar() {
   return (
-    <div className="w-full overflow-hidden flex justify-center px-3">
-      <div className="w-full relative  max-w-[1081px]">
+    <div className="w-full overflow-hidden flex justify-center ">
+      <div className="w-full relative  max-w-[95%]">
         {/* Bar */}
         <div className="flex items-center justify-between">
           {steps.map((step, index) => {
@@ -56,7 +56,7 @@ export default function StatusProgressBar() {
         </div>
 
         {/* Labels */}
-        <div className="flex justify-between mt-2 text-[10px] sm:text-[12px] text-black">
+        <div className="flex justify-between pr-4 mt-2 text-[10px] sm:text-[12px] text-black">
           {steps.map((step) => (
             <div key={step.id} className="w-[22px] sm:w-[26px] text-center whitespace-nowrap">
               {step.label}
