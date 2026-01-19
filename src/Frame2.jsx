@@ -169,7 +169,7 @@ export default function LeadsSidebar() {
               </span>
             </div>
 
-            <div className="mt-2">
+            <div className="mt-2 ml-5">
               <span
                 className={`text-white inline-block text-xs px-2 py-[2px] rounded ${
                   labelColors[lead.status] || "bg-gray-400 text-white"

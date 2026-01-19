@@ -38,11 +38,11 @@ export default function Contacts() {
         {contact.map((c, idx) => (
           <div
             key={idx}
-            className="flex flex-col sm:flex-row sm:items-center  gap-30 px-4 py-4"
+            className="flex flex-col sm:flex-row sm:items-center  gap-60 px-4 py-4"
           >
             {/* Left */}
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-slate-500 flex items-center justify-center text-white font-semibold">
+              <div className="w-9 h-9 object-cover rounded-full bg-slate-500 flex items-center justify-center text-white font-semibold">
                 {c.initial}
               </div>
               <div>

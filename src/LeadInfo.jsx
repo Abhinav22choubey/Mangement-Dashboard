@@ -2,6 +2,7 @@ import React from "react";
 import {
   Layers,
   MoreVertical,
+  MoreHorizontal,
   UserRound,
   Phone,
   Building2,
@@ -34,7 +35,7 @@ export default function LeadInfoPanel() {
           <h2 className="font-semibold text-sm">Lead Info</h2>
         </div>
         <button className="p-1 rounded-full shadow">
-          <MoreVertical size={16} className={mutedIconClass} />
+          <MoreHorizontal size={16} className={mutedIconClass} />
         </button>
       </div>
 
