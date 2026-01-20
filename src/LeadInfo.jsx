@@ -26,7 +26,7 @@ const mutedIconClass = "text-gray-400";
 
 export default function LeadInfoPanel() {
   return (
-    <div className="w-full max-w-sm bg-white ">
+    <div  className=" w-full max-w-sm bg-white ">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b">
         <div className="flex items-center gap-2">

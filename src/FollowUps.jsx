@@ -12,7 +12,7 @@ const followUps = [
 
 export default function FollowUps() {
   return (
-    <div className="w-full mt-4 py-4 bg-white text-sm ">
+    <div id="followup" className="w-full mt-4 py-4 bg-white text-sm ">
 
       {/* Header */}
       <div className="flex items-center justify-between px-5 pb-3 border-b border-gray-200/60">

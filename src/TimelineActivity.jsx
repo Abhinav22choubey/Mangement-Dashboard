@@ -49,7 +49,7 @@ const StatusIcon = ({ type }) => {
 
 export default function TimelineActivity() {
   return (
-    <div className="w-full bg-white mt-4 border ">
+    <div id="activity" className="w-full bg-white mt-4 border ">
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b">
         <div className="flex items-center gap-2 text-sm font-medium">

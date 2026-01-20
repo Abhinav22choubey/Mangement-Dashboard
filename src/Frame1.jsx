@@ -5,7 +5,7 @@ import profile from "./assets/profile.jpg";
 
 export default function Header() {
   return (
-    <header className="w-full h-[50px] border border-black/5 bg-white flex items-center justify-between px-4 md:px-10">
+    <header id="overview" className="w-full h-[50px] border border-black/5 bg-white flex items-center justify-between px-4 md:px-10">
 
       {/* Logo */}
       <div className="flex items-center">
