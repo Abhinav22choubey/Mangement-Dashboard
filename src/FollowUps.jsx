@@ -1,4 +1,4 @@
-import { Clock, Eye,Menu, MoreVertical } from "lucide-react";
+import { Clock, Eye, Menu } from "lucide-react";
 import p from "./assets/p5.jpg";
 
 const followUps = [
@@ -12,7 +12,7 @@ const followUps = [
 
 export default function FollowUps() {
   return (
-    <div className="w-full mt-4 py-4 bg-white overflow-hidden text-sm">
+    <div className="w-full mt-4 py-4 bg-white text-sm ">
 
       {/* Header */}
       <div className="flex items-center justify-between px-5 pb-3 border-b border-gray-200/60">
@@ -29,48 +29,53 @@ export default function FollowUps() {
         </div>
       </div>
 
-      {/* Table Header */}
-      <div className="hidden  md:grid grid-cols-[160px_120px_260px_160px_180px_80px] border-b border-gray-200/60 font-medium">
-        {["Date", "Time", "Followed By", "Status", "Next Date", ""].map((h, i) => (
+      {/* Scroll container */}
+      <div className="overflow-x-auto">
+
+        {/* Table Header */}
+        <div className="hidden md:grid grid-cols-[1.2fr_1fr_2fr_1.2fr_1.2fr_0.6fr] border-b border-gray-200/60 font-medium min-w-[720px]">
+          {["Date", "Time", "Followed By", "Status", "Next Date", ""].map((h, i) => (
+            <div
+              key={i}
+              className="px-4 py-3 justify-center flex border-r border-gray-200/60 last:border-r-0"
+            >
+              {h || <Menu size={18} />}
+            </div>
+          ))}
+        </div>
+
+        {/* Rows */}
+        {followUps.map((item) => (
           <div
-            key={i}
-            className="px-4 py-3 justify-center flex border-r border-gray-200/60 last:border-r-0"
+            key={item.id}
+            className="
+              md:grid md:grid-cols-[1.2fr_1fr_2fr_1.2fr_1.2fr_0.6fr]
+              border-b border-gray-200/60
+              flex flex-col md:flex-none
+              min-w-[720px]
+            "
           >
-            {h || <Menu size={18} />}
+            <Cell>{item.date}</Cell>
+            <Cell>{item.time}</Cell>
+
+            <Cell center={false}>
+              <div className="flex items-center gap-2 min-w-0">
+                <Avatar name={item.by} src={item.avatar} />
+                <span className="truncate">{item.by}</span>
+              </div>
+            </Cell>
+
+            <Cell>{item.status}</Cell>
+            <Cell>{item.nextDate}</Cell>
+
+            <Cell>
+              <button className="w-9 h-9 bg-blue-500 rounded-full flex items-center justify-center">
+                <Eye size={16} className="text-white" />
+              </button>
+            </Cell>
           </div>
         ))}
       </div>
-
-      {/* Rows */}
-      {followUps.map((item) => (
-        <div
-          key={item.id}
-          className="
-            md:grid md:grid-cols-[160px_120px_260px_160px_180px_80px]
-            border-b border-gray-200/60
-            flex flex-col md:flex-none
-          "
-        >
-          <Cell>{item.date}</Cell>
-          <Cell>{item.time}</Cell>
-
-          <Cell>
-            <div className="flex items-center gap-2 min-w-0">
-              <Avatar name={item.by} src={item.avatar} />
-              <span className="truncate">{item.by}</span>
-            </div>
-          </Cell>
-
-          <Cell>{item.status}</Cell>
-          <Cell>{item.nextDate}</Cell>
-
-          <Cell center>
-            <button className="w-9 h-9 bg-blue-500 rounded-full flex items-center justify-center">
-              <Eye size={16} className="text-white" />
-            </button>
-          </Cell>
-        </div>
-      ))}
     </div>
   );
 }
@@ -78,7 +83,7 @@ export default function FollowUps() {
 function Cell({ children, center = true }) {
   return (
     <div
-      className={`px-4 py-1 border-r border-gray-200/60 last:border-r-0 flex items-center ${
+      className={`px-4 py-2 border-r border-gray-200/60 last:border-r-0 flex items-center ${
         center ? "justify-center" : ""
       }`}
     >
@@ -87,7 +92,6 @@ function Cell({ children, center = true }) {
   );
 }
 
-/* Avatar component */
 function Avatar({ src, name }) {
   if (src) {
     return (

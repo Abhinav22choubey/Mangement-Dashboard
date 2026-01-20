@@ -9,7 +9,6 @@ import {
   Search
 } from "lucide-react";
 
-// Dummy leads data
 const initialLeads = [
   { id: 1, name: "SpriteEra IT Solution Pvt Ltd", status: "Negotiation", source: "Facebook" },
   { id: 2, name: "Apna Parcha Pvt. Ltd", status: "Negotiation", source: "Facebook" },
@@ -63,9 +62,9 @@ export default function LeadsSidebar() {
   );
 
   return (
-    <div className="w-[319px] min-h-screen border bg-white text-sm font-inter relative">
+    <div className="w-[319px] min-h-screen border border-gray-200 bg-white text-sm font-inter relative">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-4 border-b">
+      <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
         <div className="flex items-center gap-3">
           <ArrowLeft size={16} className="text-gray-600" />
           <span className="text-blue-700 font-medium">Leads</span>
@@ -78,19 +77,19 @@ export default function LeadsSidebar() {
       <div className="flex gap-2 px-4 mt-3 relative">
         <button
           onClick={() => setShowDropdown((p) => !p)}
-          className="flex-1 border rounded px-3 py-1 text-gray-600 flex items-center justify-center gap-1"
+          className="flex-1 border border-gray-200 rounded px-3 py-1 text-gray-600 flex items-center justify-center gap-1"
         >
           Label <ChevronDown size={16} />
         </button>
         <button
           onClick={() => setShowDropdown(true)}
-          className="border rounded px-3"
+          className="border border-gray-200 rounded px-3"
         >
           +
         </button>
 
         {showDropdown && (
-          <div className="absolute top-10 left-4 right-4 bg-white border rounded shadow z-10">
+          <div className="absolute top-10 left-4 right-4 bg-white border border-gray-200 rounded shadow z-10">
             {ALL_LABELS.map((l) => (
               <div
                 key={l}
@@ -118,12 +117,7 @@ export default function LeadsSidebar() {
             }`}
           >
             {label}
-            <button
-              onClick={() => {
-                removeLabel(i);
-                setPage(1);
-              }}
-            >
+            <button onClick={() => { removeLabel(i); setPage(1); }}>
               <X size={14} />
             </button>
           </div>
@@ -132,7 +126,7 @@ export default function LeadsSidebar() {
 
       {/* Search */}
       <div className="px-4 mt-4">
-        <div className="border rounded flex items-center px-2">
+        <div className="border border-gray-200 rounded flex items-center px-2">
           <input
             className="flex-1 py-1 outline-none"
             placeholder="Search"
@@ -155,7 +149,7 @@ export default function LeadsSidebar() {
         {paginatedLeads.map((lead, idx) => (
           <div
             key={lead.id}
-            className={`px-4 py-3 border-b ${
+            className={`px-4 py-3 border-b border-gray-200 ${
               idx === 0 && page === 1 ? "bg-blue-500 text-white" : "bg-white"
             }`}
           >
@@ -164,7 +158,7 @@ export default function LeadsSidebar() {
                 <ChevronDown size={16} className="-rotate-90" />
                 <span className="font-medium">{lead.name}</span>
               </div>
-              <span className="border rounded px-2 py-[1px] text-xs bg-white text-gray-600">
+              <span className="border border-gray-200 rounded px-2 py-[1px] text-xs bg-white text-gray-600">
                 {lead.source}
               </span>
             </div>
@@ -183,7 +177,7 @@ export default function LeadsSidebar() {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center gap-4 py-3 border-t">
+      <div className="flex items-center justify-center gap-4 py-3 border-t border-gray-200">
         <button
           disabled={page === 1}
           onClick={() => setPage((p) => Math.max(1, p - 1))}
