@@ -4,6 +4,7 @@ import LeadInfo from "./LeadInfo.jsx";
 import InterestedProjects from "./InterestedProject.jsx";
 import FollowUps from "./FollowUps.jsx";
 import TimelineActivity from "./TimelineActivity.jsx";
+import NotesPanel from "./NotesPanel.jsx";
 
 function Frame4() {
   return (
@@ -20,7 +21,7 @@ function Frame4() {
       {/* Right section */}
       <div className="w-full md:basis-[30%]">
         <LeadInfo />
-        
+        <NotesPanel />
       </div>
 
     </div>
