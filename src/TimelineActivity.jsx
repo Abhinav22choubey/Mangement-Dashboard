@@ -77,7 +77,7 @@ export default function TimelineActivity() {
               {/* Vertical connector (color based on current item) */}
               {!isLast && (
                 <div
-                  className={`absolute left-[20px] top-full h-6 w-[2px]
+                  className={`absolute left-[22px] top-full h-6 w-[2px]
                   ${
                     isCurrentNegotiation
                       ? "border-l-2 border-dashed border-yellow-400"
@@ -89,7 +89,7 @@ export default function TimelineActivity() {
               {/* Half circle on top (color based on previous item) */}
               {idx !== 0 && (
                 <div
-                  className={`absolute left-[15px] -top-[6px] w-3 h-1.5 rounded-t-full
+                  className={`absolute left-[17px] -top-[6px] w-3 h-1.5 rounded-t-full
                   ${
                     isPrevNegotiation ? "bg-yellow-400" : "bg-green-500"
                   }`}

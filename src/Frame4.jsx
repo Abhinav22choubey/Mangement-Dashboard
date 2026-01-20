@@ -5,7 +5,7 @@ import InterestedProjects from "./InterestedProject.jsx";
 import FollowUps from "./FollowUps.jsx";
 import TimelineActivity from "./TimelineActivity.jsx";
 import NotesPanel from "./NotesPanel.jsx";
-
+import RemindersCard from "./RemindersCard.jsx";
 function Frame4() {
   return (
     <div className="flex flex-col mt-6 gap-3 justify-between  md:flex-row w-full ">
@@ -22,6 +22,7 @@ function Frame4() {
       <div className="w-full md:basis-[30%]">
         <LeadInfo />
         <NotesPanel />
+        <RemindersCard />
       </div>
 
     </div>
