@@ -20,7 +20,7 @@ import profile from "./assets/profile.jpg";
 import p2 from "./assets/p2.jpg";
 import p3 from "./assets/p3.jpg";
 import p4 from "./assets/p4.jpg";
-
+import { Badge } from "./Buttons/button1.jsx";
 // Common class for all muted (gray) icons
 const mutedIconClass = "text-gray-400";
 
@@ -40,7 +40,7 @@ export default function LeadInfoPanel() {
       </div>
 
       {/* Body */}
-      <div className="p-4 space-y-4 text-sm">
+      <div className="px-4 py-2 space-y-1.5 text-sm">
         <InfoRow
           icon={<UserRound size={18} className={mutedIconClass} />}
           label="Name"
@@ -215,12 +215,4 @@ function Divider() {
   return <div className="border-b" />;
 }
 
-function Badge({ text, color }) {
-  return (
-    <span
-      className={`${color} text-white text-xs px-2 py-0.5 rounded-md font-medium`}
-    >
-      {text}
-    </span>
-  );
-}
+

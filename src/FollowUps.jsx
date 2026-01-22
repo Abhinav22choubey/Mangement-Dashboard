@@ -12,10 +12,10 @@ const followUps = [
 
 export default function FollowUps() {
   return (
-    <div id="followup" className="w-full mt-4 py-4 bg-white text-sm ">
+    <div id="followup" className="w-full mt-4 py-2 bg-white text-sm">
 
       {/* Header */}
-      <div className="flex items-center justify-between px-5 pb-3 border-b border-gray-200/60">
+      <div className="flex items-center justify-between px-5 pb-2 border-b border-gray-200/60">
         <div className="flex items-center gap-2 font-medium">
           <Clock size={18} />
           Follow Ups
@@ -37,7 +37,7 @@ export default function FollowUps() {
           {["Date", "Time", "Followed By", "Status", "Next Date", ""].map((h, i) => (
             <div
               key={i}
-              className="px-4 py-3 justify-center flex border-r border-gray-200/60 last:border-r-0"
+              className="px-4 py-2 justify-center flex border-r border-gray-200/60 last:border-r-0"
             >
               {h || <Menu size={18} />}
             </div>
@@ -69,8 +69,8 @@ export default function FollowUps() {
             <Cell>{item.nextDate}</Cell>
 
             <Cell>
-              <button className="w-9 h-9 bg-blue-500 rounded-full flex items-center justify-center">
-                <Eye size={16} className="text-white" />
+              <button className="w-7 h-7 bg-blue-500 rounded-full flex items-center justify-center">
+                <Eye size={14} className="text-white" />
               </button>
             </Cell>
           </div>
@@ -83,7 +83,7 @@ export default function FollowUps() {
 function Cell({ children, center = true }) {
   return (
     <div
-      className={`px-4 py-2 border-r border-gray-200/60 last:border-r-0 flex items-center ${
+      className={`px-4 py-1.5 border-r border-gray-200/60 last:border-r-0 flex items-center ${
         center ? "justify-center" : ""
       }`}
     >
@@ -98,13 +98,13 @@ function Avatar({ src, name }) {
       <img
         src={src}
         alt={name}
-        className="w-7 h-7 rounded-full object-cover"
+        className="w-6 h-6 rounded-full object-cover"
       />
     );
   }
 
   return (
-    <div className="w-7 h-7 rounded-full bg-gray-400 flex items-center justify-center text-xs text-white">
+    <div className="w-6 h-6 rounded-full bg-gray-400 flex items-center justify-center text-[10px] text-white">
       {name?.[0]}
     </div>
   );

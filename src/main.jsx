@@ -7,10 +7,13 @@ import Frame3 from './Frame3.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Frame1 />
-    <div className='flex w-full'>
-      <Frame2/>
-      <Frame3/>
+    <div className=' flex flex-col  '>
+      < Frame1 />
+      <div className='flex w-full'>
+        <Frame2/>
+        <Frame3/>
+      </div>
+
     </div>
   </StrictMode>,
 )

@@ -5,9 +5,11 @@ import {
   ChevronLeft,
   ChevronRight,
   MoreVertical,
-  X,
+  CircleX,
   Search
 } from "lucide-react";
+
+import { Button1 } from "./Buttons/Button1.jsx";
 
 const initialLeads = [
   { id: 1, name: "SpriteEra IT Solution Pvt Ltd", status: "Negotiation", source: "Facebook" },
@@ -62,9 +64,10 @@ export default function LeadsSidebar() {
   );
 
   return (
-    <div className="w-[319px] min-h-screen border border-gray-200 bg-white text-sm font-inter relative">
+    <div className="w-[400px] sticky top-[50px] h-[calc(100vh-50px)] border border-gray-200 bg-white text-sm font-inter relative overflow-y-auto">
+
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+      <div className="flex items-center justify-between px-4 h-14 border-b border-gray-200">
         <div className="flex items-center gap-3">
           <ArrowLeft size={16} className="text-gray-600" />
           <span className="text-blue-700 font-medium">Leads</span>
@@ -77,19 +80,20 @@ export default function LeadsSidebar() {
       <div className="flex gap-2 px-4 mt-3 relative">
         <button
           onClick={() => setShowDropdown((p) => !p)}
-          className="flex-1 border border-gray-200 rounded px-3 py-1 text-gray-600 flex items-center justify-center gap-1"
+          className="flex-1 border border-gray-200 rounded px-3 h-8 text-gray-600 flex items-center justify-center gap-1 leading-none"
         >
           Label <ChevronDown size={16} />
         </button>
+
         <button
           onClick={() => setShowDropdown(true)}
-          className="border border-gray-200 rounded px-3"
+          className="border border-gray-200 rounded px-3 h-8 flex items-center justify-center"
         >
           +
         </button>
 
         {showDropdown && (
-          <div className="absolute top-10 left-4 right-4 bg-white border border-gray-200 rounded shadow z-10">
+          <div className="absolute top-10 left-4 right-4 bg-white border border-gray-200 rounded shadow z-10 overflow-hidden">
             {ALL_LABELS.map((l) => (
               <div
                 key={l}
@@ -98,7 +102,7 @@ export default function LeadsSidebar() {
                   setShowDropdown(false);
                   setPage(1);
                 }}
-                className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
+                className="h-10 flex items-center justify-center text-sm hover:bg-gray-100 cursor-pointer transition"
               >
                 {l}
               </div>
@@ -112,13 +116,16 @@ export default function LeadsSidebar() {
         {labels.map((label, i) => (
           <div
             key={i}
-            className={`flex items-center gap-2 px-3 py-1 rounded-full text-white text-xs ${
+            className={`flex items-center justify-center gap-2 px-3 h-7 rounded-full text-white text-sm leading-none ${
               labelColors[label] || "bg-gray-400"
             }`}
           >
             {label}
-            <button onClick={() => { removeLabel(i); setPage(1); }}>
-              <X size={14} />
+            <button
+              onClick={() => { removeLabel(i); setPage(1); }}
+              className="flex items-center justify-center"
+            >
+              <CircleX size={14} />
             </button>
           </div>
         ))}
@@ -126,9 +133,9 @@ export default function LeadsSidebar() {
 
       {/* Search */}
       <div className="px-4 mt-4">
-        <div className="border border-gray-200 rounded flex items-center px-2">
+        <div className="border border-gray-200 rounded flex items-center px-2 h-8">
           <input
-            className="flex-1 py-1 outline-none"
+            className="flex-1 h-full outline-none leading-none"
             placeholder="Search"
             value={search}
             onChange={(e) => {
@@ -136,7 +143,7 @@ export default function LeadsSidebar() {
               setSearch(e.target.value);
             }}
           />
-          <Search className="text-gray-500" size={20} />
+          <Search className="text-gray-500" size={18} />
         </div>
       </div>
 
@@ -156,40 +163,37 @@ export default function LeadsSidebar() {
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <ChevronDown size={16} className="-rotate-90" />
-                <span className="font-medium">{lead.name}</span>
+                <span className="font-medium line-clamp-1">{lead.name}</span>
               </div>
-              <span className="border border-gray-200 rounded px-2 py-[1px] text-xs bg-white text-gray-600">
+
+              <span className="border border-gray-200 flex items-center justify-center rounded px-2 h-5 text-xs bg-white text-gray-600 leading-none">
                 {lead.source}
               </span>
             </div>
 
-            <div className="mt-2 ml-5">
-              <span
-                className={`text-white inline-block text-xs px-2 py-[2px] rounded ${
-                  labelColors[lead.status] || "bg-gray-400 text-white"
-                }`}
-              >
-                {lead.status}
-              </span>
+            <div className="mt-2 ml-5 flex items-center">
+              <Button1 value={lead.status} />
             </div>
           </div>
         ))}
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center gap-4 py-3 border-t border-gray-200">
+      <div className="flex items-center justify-center gap-4 h-12 border-t border-gray-200">
         <button
           disabled={page === 1}
           onClick={() => setPage((p) => Math.max(1, p - 1))}
-          className="disabled:opacity-30"
+          className="disabled:opacity-30 flex items-center justify-center"
         >
           <ChevronLeft size={16} />
         </button>
+
         <span>{page}</span>
+
         <button
           disabled={page === totalPages}
           onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-          className="disabled:opacity-30"
+          className="disabled:opacity-30 flex items-center justify-center"
         >
           <ChevronRight size={16} />
         </button>

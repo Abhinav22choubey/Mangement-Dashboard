@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus,NotepadText, EllipsisVertical } from "lucide-react";
 import profile from "./assets/profile.jpg";
-
+import { Badge } from "./Buttons/button1.jsx";
 
 const initialNotes = [
   {
@@ -82,7 +82,7 @@ export default function NotesPanel() {
         {notes.map((note, index) => (
           <div
             key={note.id}
-            className="relative flex items-start gap-3 px-4 py-3 border-b border-black/5 hover:bg-gray-50"
+            className="relative flex items-start gap-3 px-4 py-2 border-b border-black/5 hover:bg-gray-50"
           >
             {/* Avatar */}
           
@@ -109,11 +109,11 @@ export default function NotesPanel() {
             </div>
 
             {/* Tag */}
-            <span
-              className={`absolute right-10 bottom-3 px-2 py-[2px] rounded text-white text-xs ${note.tagColor}`}
+            <div
+              className={`absolute right-5 bottom-2   text-sm `}
             >
-              {note.tag}
-            </span>
+              <Badge text={note.tag} color={note.tagColor}></Badge>
+            </div>
 
             {/* Menu only on first card */}
             {index === 0 && (
@@ -123,6 +123,7 @@ export default function NotesPanel() {
             )}
           </div>
         ))}
+        <div className="border-b mb-2" />
       </div>
     </div>
   );

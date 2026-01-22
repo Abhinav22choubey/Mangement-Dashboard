@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Building2, MoreVertical, Plus, ChevronDown, MoreHorizontal } from "lucide-react";
+import { Building2, Plus, ChevronDown, MoreHorizontal } from "lucide-react";
 
 const projectsData = [
   {
@@ -31,7 +31,7 @@ const projectsData = [
       "24×7 water supply",
     ],
     notes:
-      "Client prefers middle floor and park facing flat. Wants possession within 2 months. Budget slightly flexible if society is premium.",
+      "Client prefers middle floor and park facing flat. Wants possession within 2 months.",
     projectName: "Shri Nivas Bhavan",
     budget: "₹ 50 - 60 Lakhs",
     propertyType: "2 BHK, 3 BHK",
@@ -54,7 +54,7 @@ const projectsData = [
 
 function InfoItem({ label, value, highlight }) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-[2px]">
       <span className="text-xs text-slate-500 font-medium">{label}</span>
       <span
         className={`text-sm font-medium ${
@@ -69,20 +69,22 @@ function InfoItem({ label, value, highlight }) {
 
 function ProjectCard({ project, showNotes }) {
   return (
-    <div className="relative  rounded-lg overflow-hidden bg-white shadow-sm">
-      <div className={`h-2 w-full ${project.accent}`} />
+    <div className="relative rounded-lg overflow-hidden bg-white shadow-sm border border-black/5">
+      {/* Accent bar */}
+      <div className={`h-[10px] w-full ${project.accent}`} />
 
+      {/* Menu button */}
       <button className="absolute top-3 right-3 p-1 rounded-full bg-white shadow">
-        <MoreHorizontal size={16} />
+        <MoreHorizontal size={14} />
       </button>
 
-      <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="flex flex-col gap-4">
+      <div className="px-4 py-2 grid grid-cols-1 md:grid-cols-3 gap-y-3 gap-x-6">
+        <div className="flex flex-col gap-3">
           <InfoItem label="Lead Intent" value={project.leadIntent} />
           <InfoItem label="Preferred Location" value={project.location} />
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <InfoItem
             label="Project Name"
             value={project.projectName}
@@ -91,24 +93,24 @@ function ProjectCard({ project, showNotes }) {
           <InfoItem label="Budget" value={project.budget} highlight="red" />
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           <InfoItem label="Property Type" value={project.propertyType} />
           <InfoItem label="Property Status" value={project.status} />
         </div>
 
-        <div className="md:col-span-3 w-full">
-          <p className="text-xs text-slate-600 font-bold mb-1">
+        <div className="md:col-span-3 w-full mt-1">
+          <p className="text-xs text-slate-500 font-medium mb-1">
             Key Features Required
           </p>
 
-          <ul className="list-disc ml-5 text-sm font-medium text-slate-900 space-y-1">
+          <ul className="list-disc ml-4 text-sm font-medium text-slate-900">
             {project.features.map((f, i) => (
               <li key={i}>{f}</li>
             ))}
           </ul>
 
           {showNotes && project.notes && (
-            <div className="mt-3">
+            <div className="mt-2">
               <InfoItem label="Notes" value={project.notes} />
             </div>
           )}
@@ -128,7 +130,7 @@ export default function InterestedProjects() {
   return (
     <div className="w-full max-w-6xl mx-auto bg-white mt-4 py-4 relative">
       {/* Header */}
-      <div className="flex items-center mx-4 justify-between  mb-4">
+      <div className="flex items-center mx-4 justify-between mb-3">
         <div className="flex items-center gap-2">
           <Building2 size={18} />
           <h2 className="text-sm font-medium">
@@ -140,10 +142,11 @@ export default function InterestedProjects() {
           <Plus size={16} /> Add
         </button>
       </div>
+
       <div className="border-t border-gray-200 pb-3" />
-      {/* Cards wrapper */}
+
       <div className="relative mx-4 px-4">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           {visibleProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -153,7 +156,6 @@ export default function InterestedProjects() {
           ))}
         </div>
 
-        {/* Rectangle blur overlay (Figma style) */}
         {!expanded && projectsData.length > 2 && (
           <div
             className="pointer-events-none absolute bottom-0 left-0 w-full"
@@ -165,12 +167,11 @@ export default function InterestedProjects() {
           />
         )}
 
-        {/* Floating button */}
         {projectsData.length > 2 && (
-          <div className="relative left-1/2 bottom-0 justify-start flex -translate-x-1/2">
+          <div className="relative left-1/2 justify-start flex -translate-x-1/2">
             <button
               onClick={() => setExpanded((p) => !p)}
-              className="flex items-center gap-1 text-sm text-blue-600 font-medium px-4 py-1.5"
+              className="flex items-center gap-1 text-sm text-blue-600 font-medium px-4 py-1"
             >
               {expanded ? "View Less" : "View More"}
               <ChevronDown

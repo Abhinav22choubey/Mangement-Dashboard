@@ -76,18 +76,18 @@ export default function RemindersCard() {
       <div className="border-t border-black/5" />
 
       {/* List */}
-      <div className="px-2 py-2 space-y-1 max-h-[260px] overflow-y-auto">
+      <div className="px-2 py-2 space-y-1.5 max-h-[260px] overflow-y-auto">
         {reminders.map((item) => (
           <div key={item.id}>
             <div
-              className={`flex items-center justify-between gap-3 px-3 py-2  rounded-md hover:bg-gray-50 transition
+              className={`flex items-center justify-between gap-3 px-3 py-1.5  rounded-md hover:bg-gray-50 transition
               ${
                 item.completed
                   ? "border-l-4 border-red-500"
                   : ""
               }`}
             >
-              <div className="flex items-start gap-2">
+              <div className="flex items-start gap-1">
                 <Layers size={15} className="text-gray-500 mt-0.5" />
 
                 <div>
@@ -95,7 +95,7 @@ export default function RemindersCard() {
                     {item.title}
                   </p>
 
-                  <div className="flex items-center gap-1 mt-1  text-[10px] text-gray-600">
+                  <div className="flex items-center gap-1 mt-0.5  text-[10px] text-gray-600">
                     {item.recurring && <Repeat size={10} />}
                     <span >{item.time}</span>
                   </div>
