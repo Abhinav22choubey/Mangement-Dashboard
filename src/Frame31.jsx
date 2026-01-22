@@ -8,7 +8,7 @@ function Frame31() {
         <span>
           <Layers />
         </span>
-        <h1 className="ml-2 text-lg font-medium">
+        <h1 className="ml-2 text-xl font-medium">
           SpriteEra IT Solutions Pvt. Ltd.
         </h1>
       </div>
