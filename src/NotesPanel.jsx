@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus,NotepadText, EllipsisVertical } from "lucide-react";
 import profile from "./assets/profile.jpg";
-import { Badge } from "./Buttons/button1.jsx";
+import { Badge } from "./Buttons/Button1.jsx";
 
 const initialNotes = [
   {
