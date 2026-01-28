@@ -1,6 +1,7 @@
 import React from "react";
 import { Layers,Crown,Briefcase } from "lucide-react";
 
+// header section with company name and action buttons
 function Frame31() {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-4 rounded-md ">

@@ -1,3 +1,6 @@
+
+// tab navigation component
+
 export default function Tab({ activeTab, setActiveTab }) {
   const tabs = [
     { name: "Overview", id: "overview" },

@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import { Button1 } from "./Buttons/Button1.jsx";
-
+// side bar for leads with search, filter and pagination
 const initialLeads = [
   { id: 1, name: "SpriteEra IT Solution Pvt Ltd", status: "Negotiation", source: "Facebook" },
   { id: 2, name: "Apna Parcha Pvt. Ltd", status: "Negotiation", source: "Facebook" },

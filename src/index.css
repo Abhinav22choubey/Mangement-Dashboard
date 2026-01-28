@@ -5,3 +5,101 @@
     border-color: theme('colors.gray.200');
   }
 }
+
+/* @custom-variant dark (&:where(.dark, .dark *)); */
+
+:root {
+  --primary: #238EEB;
+  --green: #00AD28;
+  --dgreen: #015013;
+  --yellow: #EBCD23;
+  --blue: #2D007F;
+  --sky: #005897;
+   --font-poppins: 'Poppins', sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+@theme {
+  --breakpoint-3xl: 106.25rem;
+}
+
+@utility spacing {
+  @apply px-3 sm:px-12 md:px-14 lg:px-18 xl:px-36;
+}
+@utility max-width{
+  @apply flex max-w-[1300px] mx-auto xl:max-w-[1450px] 2xl:max-w-[1500px] 3xl:max-w-[1800px] w-full;
+}
+
+@utility center {
+  @apply flex justify-center items-center;
+}
+
+@utility text40 {
+  @apply text-3xl sm:text-[33px] md:text-[35px] 2xl:text-[40px] 3xl:text-6xl;
+}
+@utility text35 {
+  @apply text-xl sm:text-2xl md:text-3xl xl:text-4xl 3xl:text-5xl;
+}
+@utility text30 {
+  @apply text-xl md:text-2xl xl:text-3xl 3xl:text-3xl;
+}
+@utility text25 {
+  @apply text-[19px] sm:text-lg md:text-xl lg:text-xl xl:text-[22px] 2xl:text-[25px] 3xl:text-3xl;
+}
+@utility text20 {
+  @apply text-base sm:text-lg md:text-lg lg:text-xl xl:text-xl 3xl:text-2xl;
+}
+
+@utility text18 {
+  @apply text-[15px] sm:text-[17px] md:text-[17px] xl:text-[17px] 2xl:text-lg 3xl:text-2xl;
+}
+@utility text16 {
+  @apply text-[15px] sm:text-[15px] md:text-[15px] lg:text-[15px] 2xl:text-base 3xl:text-xl;
+}
+@utility text15 {
+  @apply text-[14px] xl:text-[15px] 3xl:text-base;
+}
+@utility text14 {
+  @apply text-sm lg:text-sm xl:text-sm 3xl:text-base;
+}
+@utility text12 {
+  @apply text-[11px] md:text-[12px] 3xl:text-sm;
+}
+@layer components {
+  .btn-blue-lg {
+    @apply bg-(--primary)/90 hover:bg-(--primary) border border-(--primary) text-white text-lg py-2 px-4 rounded-xl cursor-pointer transition duration-300 ease-in-out;
+  }
+
+  .btn-blue {
+    @apply bg-(--blue) border-2 border-(--blue) text-white px-2 md:px-3 lg:px-3 2xl:px-4 3xl:px-6 rounded-md text20 capitalize py-1 md:py-1 lg:py-1 2xl:py-1.5 3xl:py-3 cursor-pointer ;
+  }
+  .btn-green {
+    @apply bg-(--green) border-2 border-(--green) text-white px-2 md:px-3 lg:px-3 2xl:px-4 3xl:px-6 rounded-md text20 capitalize py-1 md:py-1 lg:py-1 2xl:py-1.5 3xl:py-3 cursor-pointer ;
+  }
+  .btn-red {
+    @apply bg-(--primary) border-2 border-(--primary) text-white px-2 md:px-3 lg:px-3 2xl:px-4 3xl:px-6 rounded-md text20 capitalize py-1 md:py-1 lg:py-1 2xl:py-1.5 3xl:py-3 cursor-pointer;
+  }
+  .btn-gray {
+    @apply bg-gray-500 border-2 border-gray-500 text-white px-2 md:px-3 lg:px-3 2xl:px-4 3xl:px-6 rounded-md text20 capitalize py-1 md:py-1 lg:py-1 2xl:py-1.5 3xl:py-3 cursor-pointer;
+  }
+  .btn-white {
+    @apply bg-white border-2 border-(--primary) text-(--primary) px-2 md:px-3 lg:px-3 2xl:px-4 3xl:px-6 rounded-md text20 capitalize py-1 md:py-1 lg:py-1 2xl:py-1 3xl:py-2 cursor-pointer ;
+  }
+
+  .btn-red-outline {
+    @apply bg-white border-2 border-(--primary) text-(--primary) px-2 md:px-3 lg:px-3 2xl:px-4 3xl:px-6 rounded-md text20 capitalize py-1 md:py-1 lg:py-1 2xl:py-1.5 3xl:py-1 cursor-pointer;
+  }
+  .btn-blue-outline {
+    @apply bg-transparent border border-(--blue) text-(--blue) px-2 md:px-3 lg:px-4 rounded-md text20 capitalize py-1 md:py-1 lg:py-1.5 cursor-pointer;
+  }
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

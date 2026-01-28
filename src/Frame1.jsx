@@ -2,7 +2,7 @@ import React from "react";
 import { Search, PlusCircle, Clock, Bell } from "lucide-react";
 import logo from "./assets/logo.png";
 import profile from "./assets/profile.jpg";
-
+// header component with logo, search, notification and user profile
 export default function Header() {
   return (
     <header id="overview" className="fixed top-0 w-full h-[50px] z-100 border border-black/5 bg-white flex items-center justify-between px-4 md:px-10">

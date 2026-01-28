@@ -10,7 +10,7 @@ const steps = [
   { id: 6, label: "Booking Confirm", status: "pending" },
   { id: 7, label: "Converted", status: "pending" },
 ];
-
+// status progress bar component
 export default function StatusProgressBar() {
   return (
     <div className="w-full overflow-hidden flex justify-center ">
