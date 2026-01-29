@@ -4,13 +4,11 @@ import StatusBar from "./StatusBar.jsx";
 import Tab from "./Tab.jsx";
 import Frame4 from "./Frame4.jsx";
 
-// main content area with header, status bar, tabs and dynamic content
-
 export default function Frame3() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="min-h-screen mt-10 w-full bg-slate-100 p-4 md:p-6">
+    <div className="min-h-screen mt-0 w-full bg-slate-100 p-4 md:p-6">
       <div className="mx-auto max-w-7xl">
 
         <Frame31 />

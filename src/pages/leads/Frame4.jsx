@@ -9,7 +9,6 @@ import NegotiationRight from "./NegotiationRight.jsx";
 import ActivityRight from "./ActivityRight.jsx";
 import Documents from "./Documents.jsx";
 import { File } from "lucide-react";
-// main content area that displays different components based on the active tab
 
 function Frame4({ activeTab }) {
   const isOverview = activeTab === "overview";
@@ -22,14 +21,12 @@ function Frame4({ activeTab }) {
 
       {/* Left section */}
       <div className="w-full md:w-[70%] min-w-0">
-
         {isOverview && <Contacts />}
         {isOverview && <InterestedProjects />}
 
         {(isOverview || isFollowUp) && <FollowUps />}
 
         {(isOverview || isActivity) && <TimelineActivity />}
-
       </div>
 
       {/* Right section */}
@@ -40,30 +37,28 @@ function Frame4({ activeTab }) {
           <RemindersCard />
         </div>
       )}
+
       {isFollowUp && (
-          <div className="w-full md:basis-[30%]">
-            <NegotiationRight />
-          </div>
+        <div className="w-full md:basis-[30%]">
+          <NegotiationRight />
+        </div>
       )}
-      {
-        isActivity && (
-          <div className="w-full md:basis-[30%]">
+
+      {isActivity && (
+        <div className="w-full md:basis-[30%]">
           <ActivityRight />
         </div>
-        )
-      }
-      {
-        isDocuments && (
-          <div className="w-full">
-             <div className="flex flex-row mb-1 mt-0">
-              <File></File>
-              Documents
-      </div>
-            <Documents />
+      )}
+
+      {isDocuments && (
+        <div className="w-full">
+          <div className="flex flex-row items-center gap-2 mb-1 mt-0">
+            <File />
+            <span className="text20">Documents</span>
           </div>
-        )
-      }
-       
+          <Documents />
+        </div>
+      )}
     </div>
   );
 }

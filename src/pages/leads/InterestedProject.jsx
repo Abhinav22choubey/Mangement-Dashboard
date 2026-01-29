@@ -55,9 +55,9 @@ const projectsData = [
 function InfoItem({ label, value, highlight }) {
   return (
     <div className="flex flex-col gap-[2px]">
-      <span className="text-xs text-slate-500 font-medium">{label}</span>
+      <span className="text12 text-slate-500 font-medium">{label}</span>
       <span
-        className={`text-sm font-medium ${
+        className={`text16 font-medium ${
           highlight === "blue" ? "text-blue-600" : "text-slate-900"
         } ${highlight === "red" ? "text-red-500" : ""}`}
       >
@@ -69,7 +69,7 @@ function InfoItem({ label, value, highlight }) {
 
 function ProjectCard({ project, showNotes }) {
   return (
-    <div className="relative rounded-lg overflow-hidden bg-white shadow-sm border border-black/5">
+    <div className="relative rounded-lg overflow-hidden bg-white shadow-sm border border-gray-200">
       {/* Accent bar */}
       <div className={`h-[10px] w-full ${project.accent}`} />
 
@@ -85,11 +85,7 @@ function ProjectCard({ project, showNotes }) {
         </div>
 
         <div className="flex flex-col gap-3">
-          <InfoItem
-            label="Project Name"
-            value={project.projectName}
-            highlight="blue"
-          />
+          <InfoItem label="Project Name" value={project.projectName} highlight="blue" />
           <InfoItem label="Budget" value={project.budget} highlight="red" />
         </div>
 
@@ -99,11 +95,11 @@ function ProjectCard({ project, showNotes }) {
         </div>
 
         <div className="md:col-span-3 w-full mt-1">
-          <p className="text-xs text-slate-500 font-medium mb-1">
+          <p className="text12 text-slate-500 font-medium mb-1">
             Key Features Required
           </p>
 
-          <ul className="list-disc ml-4 text-sm font-medium text-slate-900">
+          <ul className="list-disc ml-4 text16 font-medium text-slate-900">
             {project.features.map((f, i) => (
               <li key={i}>{f}</li>
             ))}
@@ -123,9 +119,7 @@ function ProjectCard({ project, showNotes }) {
 export default function InterestedProjects() {
   const [expanded, setExpanded] = useState(false);
 
-  const visibleProjects = expanded
-    ? projectsData
-    : projectsData.slice(0, 2);
+  const visibleProjects = expanded ? projectsData : projectsData.slice(0, 2);
 
   return (
     <div className="w-full max-w-6xl mx-auto bg-white mt-4 py-4 relative">
@@ -133,12 +127,10 @@ export default function InterestedProjects() {
       <div className="flex items-center mx-4 justify-between mb-3">
         <div className="flex items-center gap-2">
           <Building2 size={18} />
-          <h2 className="text-sm font-medium">
-            Interested Project / Property
-          </h2>
+          <h2 className="text16 font-medium">Interested Project / Property</h2>
         </div>
 
-        <button className="flex items-center gap-1 text-sm text-blue-500 font-medium">
+        <button className="flex items-center gap-1 text16 text-blue-500 font-medium">
           <Plus size={16} /> Add
         </button>
       </div>
@@ -171,14 +163,12 @@ export default function InterestedProjects() {
           <div className="relative left-1/2 justify-start flex -translate-x-1/2">
             <button
               onClick={() => setExpanded((p) => !p)}
-              className="flex items-center gap-1 text-sm text-blue-600 font-medium px-4 py-1"
+              className="flex items-center gap-1 text16 text-blue-600 font-medium px-4 py-1"
             >
               {expanded ? "View Less" : "View More"}
               <ChevronDown
                 size={16}
-                className={`transition-transform ${
-                  expanded ? "rotate-180" : ""
-                }`}
+                className={`transition-transform ${expanded ? "rotate-180" : ""}`}
               />
             </button>
           </div>

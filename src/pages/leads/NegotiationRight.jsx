@@ -9,20 +9,22 @@ import {
 
 export default function NegotiationRight() {
   return (
-    <div className=" flex items-center justify-center  p-3">
+    <div className="flex items-center justify-center p-3">
       {/* Card */}
-      <div className="w-full max-w-[340px] bg-white  overflow-hidden">
+      <div className="w-full max-w-[340px] bg-white overflow-hidden border border-gray-200">
         {/* Header */}
         <div className="p-3">
-          <h2 className="text-lg font-medium text-black">Negotiation</h2>
-          <p className="text14 text-[#666E81] mt-1">Mon, 25 Dec 2025, 5:35 PM</p>
+          <h2 className="text16 font-medium text-black">Negotiation</h2>
+          <p className="text14 text-[#666E81] mt-1">
+            Mon, 25 Dec 2025, 5:35 PM
+          </p>
         </div>
 
-        <div className="border-t border-black/5" />
+        <div className="border-t border-gray-200" />
 
         {/* Followed By */}
         <div className="flex items-center gap-3 p-3">
-          <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full bg-gray-200 center">
             <User size={14} className="text-black" />
           </div>
           <div>
@@ -31,7 +33,7 @@ export default function NegotiationRight() {
           </div>
         </div>
 
-        <div className="border-t border-black/5" />
+        <div className="border-t border-gray-200" />
 
         {/* Follow Type */}
         <div className="flex items-center gap-3 p-3">
@@ -42,18 +44,20 @@ export default function NegotiationRight() {
           </div>
         </div>
 
-        <div className="border-t border-black/5" />
+        <div className="border-t border-gray-200" />
 
         {/* Client Says */}
         <div className="flex items-start gap-3 p-3">
           <MessageCircleMore size={20} className="text-black mt-1" />
           <div>
             <p className="text12 text-[#4E5E6A]">What’s Client Says</p>
-            <p className="text14 text-black mt-1">Ask Proposal of XYZ Project</p>
+            <p className="text14 text-black mt-1">
+              Ask Proposal of XYZ Project
+            </p>
           </div>
         </div>
 
-        <div className="border-t border-black/5" />
+        <div className="border-t border-gray-200" />
 
         {/* Notes */}
         <div className="flex items-start gap-3 p-3">
@@ -66,7 +70,7 @@ export default function NegotiationRight() {
           </div>
         </div>
 
-        <div className="border-t border-black/5" />
+        <div className="border-t border-gray-200" />
 
         {/* Next Follow Date */}
         <div className="flex items-center gap-3 p-3">
@@ -77,10 +81,10 @@ export default function NegotiationRight() {
           </div>
         </div>
 
-        <div className="border-t border-black/5" />
+        <div className="border-t border-gray-200" />
 
         {/* Actions */}
-        <div className="flex gap-3 p-3">
+        <div className="flex flex-wrap gap-3 p-3">
           <button className="bg-[var(--primary)] text-white px-4 py-2 rounded text15">
             Edit
           </button>

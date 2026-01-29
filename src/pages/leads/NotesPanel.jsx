@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus,NotepadText, EllipsisVertical } from "lucide-react";
+import { Plus, NotepadText, EllipsisVertical } from "lucide-react";
 import profile from "./assets/profile.jpg";
 import { Badge } from "./Buttons/Button1.jsx";
 
@@ -59,19 +59,20 @@ export default function NotesPanel() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-white mt-4 border border-black/5 rounded-md">
-      {/* Header */}
-      <div className=" px-4 flex col-auto">
+    <div className="w-full max-w-sm bg-white mt-4 border border-gray-200 rounded-md">
 
+      {/* Header (original spacing) */}
+      <div className="px-4 flex col-auto">
         <NotepadText size={20} className="mt-3 mx-1" />
-        <div className="py-3 font-semibold text-[15px]">Notes</div>
+        <div className="py-3 font-semibold text16">Notes</div>
       </div>
-        <div className="border-t border-black/5" />
+
+      <div className="border-t border-gray-200" />
 
       {/* Add note */}
       <button
         onClick={addNote}
-        className="flex items-center gap-2 w-full px-4 py-2 text-blue-500 text-sm border-b border-black/5 hover:bg-blue-50 transition"
+        className="flex items-center gap-2 w-full px-4 py-2 text-blue-500 text16 border-b border-gray-200 hover:bg-blue-50 transition"
       >
         <Plus size={18} />
         Add Notes
@@ -82,37 +83,41 @@ export default function NotesPanel() {
         {notes.map((note, index) => (
           <div
             key={note.id}
-            className="relative flex items-start gap-3 px-4 py-2 border-b border-black/5 hover:bg-gray-50"
+            className="relative flex items-start gap-3 px-4 py-2 border-b border-gray-200 hover:bg-gray-50"
           >
             {/* Avatar */}
-          
-             <div className="w-[30px] h-[30px] rounded-full overflow-hidden flex-shrink-0">
-                  <img
-                    src={profile}
-                    alt="profile"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+            <div className="w-[30px] h-[30px] rounded-full overflow-hidden flex-shrink-0">
+              <img
+                src={profile}
+                alt="profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
 
             {/* Content */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
                 <span className={`w-2 h-2 rounded-full ${note.dot}`} />
-                <p className="text-sm font-medium text-black line-clamp-1">
+                <p className="text16 font-medium text-black line-clamp-1">
                   {note.title}
                 </p>
               </div>
-              <p className="text-xs text-[#47555f] mt-1 line-clamp-1">
+
+              <p className="text14 text-[#47555f] mt-1 line-clamp-1">
                 {note.desc}
               </p>
-              <p className="text-[10px] text-[#4E5E6A] mt-1">{note.time}</p>
+
+              <p className="text12 text-[#4E5E6A] mt-1">{note.time}</p>
+
+              {/* Mobile tag */}
+              <div className="mt-2 md:hidden">
+                <Badge text={note.tag} color={note.tagColor} />
+              </div>
             </div>
 
-            {/* Tag */}
-            <div
-              className={`absolute right-5 bottom-2   text-sm `}
-            >
-              <Badge text={note.tag} color={note.tagColor}></Badge>
+            {/* Desktop tag */}
+            <div className="absolute right-5 bottom-2 hidden md:block">
+              <Badge text={note.tag} color={note.tagColor} />
             </div>
 
             {/* Menu only on first card */}
@@ -123,7 +128,8 @@ export default function NotesPanel() {
             )}
           </div>
         ))}
-        <div className="border-b mb-2" />
+
+        <div className="border-b border-gray-200 mb-2" />
       </div>
     </div>
   );

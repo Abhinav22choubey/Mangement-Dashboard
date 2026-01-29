@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 import { Button1 } from "./Buttons/Button1.jsx";
-// side bar for leads with search, filter and pagination
+
 const initialLeads = [
   { id: 1, name: "SpriteEra IT Solution Pvt Ltd", status: "Negotiation", source: "Facebook" },
   { id: 2, name: "Apna Parcha Pvt. Ltd", status: "Negotiation", source: "Facebook" },
@@ -38,16 +38,6 @@ export default function LeadsSidebar() {
 
   const pageSize = 5;
 
-  const addLabel = (label) => {
-    if (!labels.includes(label)) {
-      setLabels((prev) => [...prev, label]);
-    }
-  };
-
-  const removeLabel = (index) => {
-    setLabels((prev) => prev.filter((_, i) => i !== index));
-  };
-
   const filteredLeads = useMemo(() => {
     return initialLeads.filter((lead) => {
       const matchSearch = lead.name.toLowerCase().includes(search.toLowerCase());
@@ -64,14 +54,14 @@ export default function LeadsSidebar() {
   );
 
   return (
-    <div className="w-[400px] sticky top-[50px] h-[calc(100vh-50px)] border border-gray-200 bg-white text-sm font-inter relative overflow-y-auto">
+    <div className="w-full sm:w-[400px] sticky top-[50px] h-[calc(100vh-50px)] border border-gray-200 bg-white text14 font-inter relative overflow-y-auto">
 
       {/* Header */}
       <div className="flex items-center justify-between px-4 h-14 border-b border-gray-200">
         <div className="flex items-center gap-3">
           <ArrowLeft size={16} className="text-gray-600" />
-          <span className="text-blue-700 font-medium">Leads</span>
-          <span className="text-gray-500">Kanban</span>
+          <span className="text-blue-700 font-medium text15">Leads</span>
+          <span className="text-gray-500 text14">Kanban</span>
         </div>
         <MoreVertical size={16} />
       </div>
@@ -80,14 +70,14 @@ export default function LeadsSidebar() {
       <div className="flex gap-2 px-4 mt-3 relative">
         <button
           onClick={() => setShowDropdown((p) => !p)}
-          className="flex-1 border border-gray-200 rounded px-3 h-8 text-gray-600 flex items-center justify-center gap-1 leading-none"
+          className="flex-1 border border-gray-200 rounded px-3 h-8 text-gray-600 flex items-center justify-center gap-1 leading-none text14"
         >
           Label <ChevronDown size={16} />
         </button>
 
         <button
           onClick={() => setShowDropdown(true)}
-          className="border border-gray-200 rounded px-3 h-8 flex items-center justify-center"
+          className="border border-gray-200 rounded px-3 h-8 flex items-center justify-center text14"
         >
           +
         </button>
@@ -98,11 +88,11 @@ export default function LeadsSidebar() {
               <div
                 key={l}
                 onClick={() => {
-                  addLabel(l);
+                  setLabels((p) => [...p, l]);
                   setShowDropdown(false);
                   setPage(1);
                 }}
-                className="h-10 flex items-center justify-center text-sm hover:bg-gray-100 cursor-pointer transition"
+                className="h-10 flex items-center justify-center text14 hover:bg-gray-100 cursor-pointer transition"
               >
                 {l}
               </div>
@@ -116,15 +106,12 @@ export default function LeadsSidebar() {
         {labels.map((label, i) => (
           <div
             key={i}
-            className={`flex items-center justify-center gap-2 px-3 h-7 rounded-full text-white text-sm leading-none ${
+            className={`flex items-center justify-center gap-2 px-3 h-7 rounded-full text-white text14 leading-none ${
               labelColors[label] || "bg-gray-400"
             }`}
           >
             {label}
-            <button
-              onClick={() => { removeLabel(i); setPage(1); }}
-              className="flex items-center justify-center"
-            >
+            <button onClick={() => setLabels((p) => p.filter((_, x) => x !== i))}>
               <CircleX size={14} />
             </button>
           </div>
@@ -135,7 +122,7 @@ export default function LeadsSidebar() {
       <div className="px-4 mt-4">
         <div className="border border-gray-200 rounded flex items-center px-2 h-8">
           <input
-            className="flex-1 h-full outline-none leading-none"
+            className="flex-1 h-full outline-none leading-none text14"
             placeholder="Search"
             value={search}
             onChange={(e) => {
@@ -149,10 +136,6 @@ export default function LeadsSidebar() {
 
       {/* Leads list */}
       <div className="mt-4">
-        {paginatedLeads.length === 0 && (
-          <div className="text-center text-gray-400 py-6">No leads found</div>
-        )}
-
         {paginatedLeads.map((lead, idx) => (
           <div
             key={lead.id}
@@ -163,10 +146,10 @@ export default function LeadsSidebar() {
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <ChevronDown size={16} className="-rotate-90" />
-                <span className="font-medium line-clamp-1">{lead.name}</span>
+                <span className="font-medium line-clamp-1 text14">{lead.name}</span>
               </div>
 
-              <span className="border border-gray-200 flex items-center justify-center rounded px-2 h-5 text-xs bg-white text-gray-600 leading-none">
+              <span className="border border-gray-200 flex items-center justify-center rounded px-2 h-5 text12 bg-white text-gray-600 leading-none">
                 {lead.source}
               </span>
             </div>
@@ -179,11 +162,11 @@ export default function LeadsSidebar() {
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-center gap-4 h-12 border-t border-gray-200">
+      <div className="flex items-center justify-center gap-4 h-12 border-t border-gray-200 text14">
         <button
           disabled={page === 1}
           onClick={() => setPage((p) => Math.max(1, p - 1))}
-          className="disabled:opacity-30 flex items-center justify-center"
+          className="disabled:opacity-30"
         >
           <ChevronLeft size={16} />
         </button>
@@ -193,7 +176,7 @@ export default function LeadsSidebar() {
         <button
           disabled={page === totalPages}
           onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-          className="disabled:opacity-30 flex items-center justify-center"
+          className="disabled:opacity-30"
         >
           <ChevronRight size={16} />
         </button>

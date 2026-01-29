@@ -6,6 +6,7 @@ import {
   CalendarFold,
 } from "lucide-react";
 import prof from "./assets/profile.jpg";
+
 const Icon = ({ children }) => (
   <div className="w-[20px] h-[20px] flex items-center justify-center opacity-50 shrink-0">
     {children}
@@ -14,7 +15,7 @@ const Icon = ({ children }) => (
 
 export default function ActivityRight() {
   return (
-    <div className="w-full max-w-[360px] bg-white border pl-1 mt-4 overflow-hidden">
+    <div className="w-full max-w-[360px] bg-white border border-gray-200 pl-1 mt-4 overflow-hidden">
 
       {/* Header */}
       <div className="flex gap-3 items-start pt-4 pb-2 px-3">
@@ -83,10 +84,11 @@ export default function ActivityRight() {
         label="Next Follow Date"
         value="Wed, 27 Dec 2025"
       />
-        <Divider />
+
+      <Divider />
 
       {/* Buttons */}
-      <div className="flex gap-3 p-4">
+      <div className="flex flex-wrap gap-3 p-4">
         <button className="bg-(--primary) text-white px-5 py-2 rounded-lg text15">
           Edit
         </button>
@@ -101,7 +103,7 @@ export default function ActivityRight() {
 /* Reusable components */
 
 function Divider() {
-  return <div className="h-px bg-black/5 w-full" />;
+  return <div className="h-px bg-gray-200 w-full" />;
 }
 
 function Row({ icon, label, value }) {
@@ -109,9 +111,9 @@ function Row({ icon, label, value }) {
     <div className="flex gap-3 p-2 px-3 items-center">
       <Icon>{icon}</Icon>
 
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <p className="text12 text-[#667085]">{label}</p>
-        <div className="text14 text-black mt-0 leading-tight">
+        <div className="text14 text-black mt-0 leading-tight break-words">
           {value}
         </div>
       </div>

@@ -1,11 +1,4 @@
-@import "tailwindcss";
-
-@layer base {
-  *, ::before, ::after {
-    border-color: theme('colors.gray.200');
-  }
-}
-
+@import 'tailwindcss';
 /* @custom-variant dark (&:where(.dark, .dark *)); */
 
 :root {

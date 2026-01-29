@@ -37,9 +37,7 @@ export default function RemindersCard() {
 
   const toggleComplete = (id) => {
     setReminders((prev) =>
-      prev.map((r) =>
-        r.id === id ? { ...r, completed: !r.completed } : r
-      )
+      prev.map((r) => (r.id === id ? { ...r, completed: !r.completed } : r))
     );
   };
 
@@ -55,49 +53,46 @@ export default function RemindersCard() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-white mt-4 border border-gray-100">
+    <div className="w-full max-w-sm bg-white mt-4 border border-gray-200">
       {/* Header */}
       <div className="flex items-center gap-2 px-4 py-3">
         <Bell size={16} />
-        <h2 className="font-semibold text-[15px]">Reminders (Private)</h2>
+        <h2 className="font-semibold text16">Reminders (Private)</h2>
       </div>
 
-      <div className="border-t border-black/5" />
+      <div className="border-t border-gray-200" />
 
       {/* Add Reminder */}
       <button
         onClick={addReminder}
-        className="flex items-center gap-2 px-4 py-2 w-full text-blue-500 text-sm hover:bg-blue-50 transition"
+        className="flex items-center gap-2 px-4 py-2 w-full text-blue-500 text16 hover:bg-blue-50 transition"
       >
         <Plus size={18} />
         Add Reminder
       </button>
 
-      <div className="border-t border-black/5" />
+      <div className="border-t border-gray-200" />
 
       {/* List */}
       <div className="px-2 py-2 space-y-1.5 max-h-[260px] overflow-y-auto">
         {reminders.map((item) => (
           <div key={item.id}>
             <div
-              className={`flex items-center justify-between gap-3 px-3 py-1.5  rounded-md hover:bg-gray-50 transition
-              ${
-                item.completed
-                  ? "border-l-4 border-red-500"
-                  : ""
+              className={`flex items-center justify-between gap-3 px-3 py-1.5 rounded-md hover:bg-gray-50 transition ${
+                item.completed ? "border-l-4 border-red-500" : ""
               }`}
             >
-              <div className="flex items-start gap-1">
-                <Layers size={15} className="text-gray-500 mt-0.5" />
+              <div className="flex items-start gap-1 min-w-0">
+                <Layers size={15} className="text-gray-500 mt-0.5 shrink-0" />
 
-                <div>
-                  <p className="text-xs font-medium text-blue-700">
+                <div className="min-w-0">
+                  <p className="text12 font-medium text-blue-700 line-clamp-1">
                     {item.title}
                   </p>
 
-                  <div className="flex items-center gap-1 mt-0.5  text-[10px] text-gray-600">
+                  <div className="flex items-center gap-1 mt-0.5 text12 text-gray-600">
                     {item.recurring && <Repeat size={10} />}
-                    <span >{item.time}</span>
+                    <span className="truncate">{item.time}</span>
                   </div>
                 </div>
               </div>
@@ -110,7 +105,7 @@ export default function RemindersCard() {
               )}
             </div>
 
-            <div className="border-t border-black/5 my-1" />
+            <div className="border-t border-gray-200 my-1" />
           </div>
         ))}
       </div>

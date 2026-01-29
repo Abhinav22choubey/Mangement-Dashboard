@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Layers,
-  MoreVertical,
   MoreHorizontal,
   UserRound,
   Phone,
@@ -21,38 +20,31 @@ import p2 from "./assets/p2.jpg";
 import p3 from "./assets/p3.jpg";
 import p4 from "./assets/p4.jpg";
 import { Badge } from "./Buttons/Button1.jsx";
-// Common class for all muted (gray) icons
+
 const mutedIconClass = "text-gray-400";
 
 export default function LeadInfoPanel() {
   return (
-    <div  className=" w-full max-w-sm bg-white ">
+    <div className="w-full max-w-sm bg-white">
+
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
         <div className="flex items-center gap-2">
-          {/* Keep Layers icon normal */}
           <Layers size={18} />
-          <h2 className="font-semibold text-sm">Lead Info</h2>
+          <h2 className="font-semibold text16">Lead Info</h2>
         </div>
+
         <button className="p-1 rounded-full shadow">
           <MoreHorizontal size={16} className={mutedIconClass} />
         </button>
       </div>
 
       {/* Body */}
-      <div className="px-4 py-2 space-y-1.5 text-sm">
-        <InfoRow
-          icon={<UserRound size={18} className={mutedIconClass} />}
-          label="Name"
-          value="Ajay Verma"
-        />
+      <div className="px-4 py-2 space-y-1.5 text16">
+        <InfoRow icon={<UserRound size={18} className={mutedIconClass} />} label="Name" value="Ajay Verma" />
         <Divider />
 
-        <InfoRow
-          icon={<Phone size={18} className={mutedIconClass} />}
-          label="Mobile No."
-          value="+91 7896541230"
-        />
+        <InfoRow icon={<Phone size={18} className={mutedIconClass} />} label="Mobile No." value="+91 7896541230" />
         <Divider />
 
         <InfoRow
@@ -66,17 +58,12 @@ export default function LeadInfoPanel() {
         <div className="flex gap-3 items-start">
           <UsersRound size={18} className={`${mutedIconClass} mt-1`} />
           <div>
-            <p className="text-gray-500 text-xs">Lead Owner</p>
+            <p className="text-gray-500 text12">Lead Owner</p>
             <div className="flex items-center gap-2 mt-1">
               <div className="w-5 h-5 rounded-full overflow-hidden">
-                <img
-                  src={profile}
-                  className="w-full h-full object-cover object-center"
-                  alt=""
-                />
+                <img src={profile} className="w-full h-full object-cover" alt="" />
               </div>
-
-              <p className="font-medium">Nihal Singh</p>
+              <p className="font-medium text16">Nihal Singh</p>
             </div>
           </div>
         </div>
@@ -86,53 +73,26 @@ export default function LeadInfoPanel() {
         <div className="flex gap-3 items-start">
           <UsersRound size={18} className={`${mutedIconClass} mt-1`} />
           <div>
-            <p className="text-gray-500 text-xs">Assign People</p>
+            <p className="text-gray-500 text12">Assign People</p>
             <div className="flex gap-2 mt-1">
-              <div className="w-5 h-5 rounded-full overflow-hidden">
-                <img
-                  src={profile}
-                  className="w-full h-full object-cover object-center"
-                  alt=""
-                />
-              </div>
-              <div className="w-5 h-5 rounded-full overflow-hidden">
-                <img
-                  src={p2}
-                  className="w-full h-full object-cover object-center"
-                  alt=""
-                />
-              </div>
-              <div className="w-5 h-5 rounded-full overflow-hidden">
-                <img
-                  src={p3}
-                  className="w-full h-full object-cover object-center"
-                  alt=""
-                />
-              </div>
-              <div className="w-5 h-5 rounded-full overflow-hidden">
-                <img
-                  src={p4}
-                  className="w-full h-full object-cover object-center"
-                  alt=""
-                />
-              </div>
+              {[profile, p2, p3, p4].map((img, i) => (
+                <div key={i} className="w-5 h-5 rounded-full overflow-hidden">
+                  <img src={img} className="w-full h-full object-cover" alt="" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
         <Divider />
 
-        <InfoRow
-          icon={<Search size={18} className={mutedIconClass} />}
-          label="Source"
-          value="Facebook"
-        />
+        <InfoRow icon={<Search size={18} className={mutedIconClass} />} label="Source" value="Facebook" />
         <Divider />
 
         {/* Labels */}
         <div className="flex gap-3 items-start">
           <Tag size={18} className={`${mutedIconClass} mt-1`} />
           <div>
-            <p className="text-gray-500 text-xs">Label</p>
+            <p className="text-gray-500 text12">Label</p>
             <div className="flex gap-2 mt-1 flex-wrap">
               <Badge text="Call this week" color="bg-green-600" />
               <Badge text="90% Close" color="bg-orange-500" />
@@ -145,7 +105,7 @@ export default function LeadInfoPanel() {
         <div className="flex gap-3 items-start">
           <CheckCircle2 size={18} className={`${mutedIconClass} mt-1`} />
           <div>
-            <p className="text-gray-500 text-xs">Status</p>
+            <p className="text-gray-500 text12">Status</p>
             <Badge text="Negotiation" color="bg-blue-700" />
           </div>
         </div>
@@ -195,16 +155,13 @@ function InfoRow({ icon, label, value, link = false }) {
     <div className="flex gap-3 items-start">
       <div className="mt-1">{icon}</div>
       <div className="flex-1">
-        <p className="text-gray-500 text-xs">{label}</p>
+        <p className="text-gray-500 text12">{label}</p>
         {link ? (
-          <a
-            href={`https://${value}`}
-            className="text-blue-600 font-medium break-words"
-          >
+          <a href={`https://${value}`} className="text-blue-600 font-medium break-words text16">
             {value}
           </a>
         ) : (
-          <p className="font-medium break-words">{value}</p>
+          <p className="font-medium break-words text16">{value}</p>
         )}
       </div>
     </div>
@@ -212,7 +169,5 @@ function InfoRow({ icon, label, value, link = false }) {
 }
 
 function Divider() {
-  return <div className="border-b" />;
+  return <div className="border-b border-gray-200" />;
 }
-
-

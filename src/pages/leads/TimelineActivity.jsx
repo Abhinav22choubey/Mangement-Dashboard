@@ -2,11 +2,7 @@ import React from "react";
 import { Check, AlertCircle, Brain } from "lucide-react";
 
 const timeline = [
-  {
-    type: "negotiation",
-    title: "Negotiation",
-    followUp: "25 Dec 2025",
-  },
+  { type: "negotiation", title: "Negotiation", followUp: "25 Dec 2025" },
   {
     type: "done",
     title: "Visit Done",
@@ -35,8 +31,9 @@ const StatusIcon = ({ type }) => {
 
   return (
     <div
-      className={`w-[30px] h-[30px] rounded-full flex items-center justify-center ${isNegotiation ? "bg-yellow-400" : "bg-green-500"
-        }`}
+      className={`w-[30px] h-[30px] rounded-full center ${
+        isNegotiation ? "bg-yellow-400" : "bg-green-500"
+      }`}
     >
       {isNegotiation ? (
         <AlertCircle size={16} className="text-white" />
@@ -49,14 +46,14 @@ const StatusIcon = ({ type }) => {
 
 export default function TimelineActivity() {
   return (
-    <div id="activity" className="w-full bg-white mt-4 border">
+    <div id="activity" className="w-full bg-white mt-4 border border-gray-200">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b">
-        <div className="flex items-center gap-2 text-sm font-medium">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200">
+        <div className="flex items-center gap-2 text16 font-medium">
           <Brain size={16} />
           Timeline Activity
         </div>
-        <button className="bg-[#238EEB] text-white text-xs px-3 py-1 rounded">
+        <button className="bg-[#238EEB] text-white text12 px-3 py-1 rounded">
           See All
         </button>
       </div>
@@ -74,62 +71,58 @@ export default function TimelineActivity() {
               {/* Vertical connector */}
               {!isLast && (
                 <div
-                  className={`absolute left-[20px] top-[62px] h-[48px] w-[2px] ${isCurrentNegotiation
+                  className={`absolute left-[20px] top-[62px] h-[48px] w-[2px] ${
+                    isCurrentNegotiation
                       ? "border-l-2 border-dashed border-yellow-400"
                       : "bg-green-500"
-                    }`}
+                  }`}
                 />
               )}
 
               {/* Half top circle */}
               {idx !== 0 && (
                 <div
-                  className={`absolute left-[15px] -top-[6px] w-3 h-1.5 rounded-t-full ${isPrevNegotiation ? "bg-yellow-400" : "bg-green-500"
-                    }`}
+                  className={`absolute left-[15px] -top-[6px] w-3 h-1.5 rounded-t-full ${
+                    isPrevNegotiation ? "bg-yellow-400" : "bg-green-500"
+                  }`}
                 />
               )}
 
               {/* Card */}
-              <div className="relative border border-black/10 rounded-[10px] bg-white h-[62px] flex items-center px-4">
+              <div className="relative border border-gray-200 rounded-[10px] bg-white min-h-[62px] flex items-center px-4 py-2 md:py-0">
                 {/* Status icon */}
                 <div className="absolute left-4 top-1/2 -translate-y-1/2">
                   <StatusIcon type={item.type} />
                 </div>
 
                 {/* Content */}
-                <div className="pl-10 w-full grid grid-cols-[1fr_auto] items-center gap-x-3 h-full">
+                <div className="pl-10 w-full grid grid-cols-1 md:grid-cols-[1fr_auto] items-start md:items-center gap-x-3 gap-y-2 md:gap-y-0">
                   {/* Left */}
-                  <div className="leading-tight flex flex-col justify-center h-full">
-                    <p className="text-sm flex items-center font-medium">
-                      {item.title}
-                    </p>
+                  <div className="leading-tight flex flex-col justify-center">
+                    <p className="text16 font-medium">{item.title}</p>
 
                     {item.subtitle && (
-                      <p className="text-sm text-gray-500 min-h-[17px]">
+                      <p className="text14 text-gray-500 min-h-[17px]">
                         {item.subtitle}
                       </p>
                     )}
                   </div>
 
-                  {/* Right – ALWAYS centered */}
-                  <div className="text-right leading-tight flex flex-col justify-center h-full">
+                  {/* Right */}
+                  <div className="text-left md:text-right leading-tight flex flex-col justify-center">
                     {item.followUp && (
                       <>
-                        <p className="text-[11px] text-gray-500">
-                          Next Follow Up
-                        </p>
-                        <p className="text-sm font-medium">
-                          {item.followUp}
-                        </p>
+                        <p className="text12 text-gray-500">Next Follow Up</p>
+                        <p className="text16 font-medium">{item.followUp}</p>
                       </>
                     )}
 
                     {item.time && (
-                      <p className="text-sm font-medium">{item.time}</p>
+                      <p className="text16 font-medium">{item.time}</p>
                     )}
 
                     {item.by && (
-                      <p className="text-sm text-[#005897] font-medium">
+                      <p className="text16 text-[#005897] font-medium">
                         By: {item.by}
                       </p>
                     )}

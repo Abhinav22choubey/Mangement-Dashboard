@@ -1,6 +1,3 @@
-
-// tab navigation component
-
 export default function Tab({ activeTab, setActiveTab }) {
   const tabs = [
     { name: "Overview", id: "overview" },
@@ -10,13 +7,13 @@ export default function Tab({ activeTab, setActiveTab }) {
   ];
 
   return (
-    <div className="w-full mt-4 flex justify-start pl-6 z-50 bg-white border-b">
-      <div className="flex gap-8">
+    <div className="w-full mt-4 flex justify-start pl-6 z-50 bg-white overflow-x-auto hide-scrollbar">
+      <div className="flex gap-8 min-w-max">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative py-3 text-sm transition-all ${
+            className={`relative py-3 transition-all text14 whitespace-nowrap ${
               activeTab === tab.id
                 ? "text-black font-medium"
                 : "text-gray-500"

@@ -10,11 +10,12 @@ const steps = [
   { id: 6, label: "Booking Confirm", status: "pending" },
   { id: 7, label: "Converted", status: "pending" },
 ];
-// status progress bar component
+
 export default function StatusProgressBar() {
   return (
-    <div className="w-full overflow-hidden flex justify-center ">
-      <div className="w-full relative  max-w-[95%]">
+    <div className="w-full overflow-hidden flex justify-center">
+      <div className="w-full relative max-w-[95%]">
+
         {/* Bar */}
         <div className="flex items-center justify-between">
           {steps.map((step, index) => {
@@ -22,16 +23,25 @@ export default function StatusProgressBar() {
             const isActive = step.status === "active";
 
             return (
-              <div key={step.id} className="flex items-center flex-1 last:flex-none">
+              <div
+                key={step.id}
+                className="flex items-center flex-1 last:flex-none"
+              >
                 {/* Circle */}
                 <div
                   className={`shrink-0 w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] rounded-full flex items-center justify-center z-10
                   ${isDone || isActive ? "bg-[#00AD28]" : "bg-[#666E81]"}`}
                 >
-                  {isDone && <Check size={14} className="text-white sm:w-4 sm:h-4" />}
-                  {isActive && <AlertCircle size={14} className="text-white sm:w-4 sm:h-4" />}
+                  {isDone && (
+                    <Check size={14} className="text-white sm:w-4 sm:h-4" />
+                  )}
+                  {isActive && (
+                    <AlertCircle size={14} className="text-white sm:w-4 sm:h-4" />
+                  )}
                   {step.status === "pending" && (
-                    <span className="text-white text-[12px] sm:text-[15px]">{step.id}</span>
+                    <span className="text-white text12 sm:text14">
+                      {step.id}
+                    </span>
                   )}
                 </div>
 
@@ -56,15 +66,18 @@ export default function StatusProgressBar() {
         </div>
 
         {/* Labels */}
-        <div className="flex justify-between pr-4 mt-2 text-[10px] sm:text-[12px] text-black">
+        <div className="flex justify-between pr-4 mt-2 text12 sm:text14 text-black">
           {steps.map((step) => (
-            <div key={step.id} className="w-[22px] sm:w-[26px] text-center whitespace-nowrap">
+            <div
+              key={step.id}
+              className="w-[22px] sm:w-[26px] text-center whitespace-nowrap"
+            >
               {step.label}
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );
 }
-
