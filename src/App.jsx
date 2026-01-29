@@ -1,22 +1,25 @@
-import React from 'react'
-import { Routes, Route, Navigate, useLocation, Outlet, Link } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import Dashboard from './pages/Dashboard';
-import { AllLeads } from './pages/leads/AllLeads';
-import LeadDetails from './pages/leads/LeadDetails';
-import './App.css';
-export const App = () => {
-   const location = useLocation();
+import React from "react";
+import { Routes, Route, Navigate, useLocation, Outlet, Link } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Header from "./components/Header";
+import Dashboard from "./pages/Dashboard";
+import { AllLeads } from "./pages/leads/AllLeads";
+import LeadDetails from "./pages/leads/LeadDetails";
+import "./App.css";
 
-  // hide sidebar on lead detail page
-const hideSidebar = /^\/dashboard\/leads\/all\/[^/]+$/.test(location.pathname);
+export const App = () => {
+  const location = useLocation();
+
+  // Detect leads routes
+  const isLeadsPage = location.pathname.startsWith("/dashboard/leads");
 
   return (
     <div className="min-h-screen">
-      <Header />
+      {/* Show Header only if NOT leads page */}
+      {!isLeadsPage && <Header />}
+
       <Routes>
-        {/* Public Routes */}
+        {/* Public Route */}
         <Route
           path="/"
           element={
@@ -26,7 +29,7 @@ const hideSidebar = /^\/dashboard\/leads\/all\/[^/]+$/.test(location.pathname);
                   School Management System
                 </h1>
                 <Link
-                  to={'/dashboard'}
+                  to="/dashboard"
                   className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg"
                 >
                   Go to Dashboard
@@ -35,23 +38,24 @@ const hideSidebar = /^\/dashboard\/leads\/all\/[^/]+$/.test(location.pathname);
             </div>
           }
         />
-        <Route path="/dashboard" element={hideSidebar ? <Outlet /> : <Sidebar />}>
+
+        {/* Dashboard Layout */}
+        <Route
+          path="/dashboard"
+          element={isLeadsPage ? <Outlet /> : <Sidebar />}
+        >
           <Route index element={<Dashboard />} />
-        
-          <Route path="leads" element={<Outlet />}>
-            <Route path='all' element={<AllLeads />} />
-            <Route path='all/:id' element={<LeadDetails />} />
+
+          {/* Leads routes (no sidebar + no header) */}
+          <Route path="leads">
+            <Route path="all" element={<AllLeads />} />
+            <Route path="all/:id" element={<LeadDetails />} />
           </Route>
         </Route>
-        <Route path="project" element={<Outlet />}>
-            <Route index element={<h1>Project</h1>} />
-            <Route path='all' element={<AllLeads />} />
-            <Route path='all/:id' element={<LeadDetails />} />
-        </Route>
 
+        {/* Fallback */}
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
-
       </Routes>
     </div>
-  )
-}
+  );
+};
