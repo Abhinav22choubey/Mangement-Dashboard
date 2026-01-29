@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import { AllLeads } from './pages/leads/AllLeads';
 import LeadDetails from './pages/leads/LeadDetails';
-import './app.css';
+import './App.css';
 export const App = () => {
    const location = useLocation();
 
