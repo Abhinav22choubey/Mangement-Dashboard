@@ -6,6 +6,8 @@ import Dashboard from "./pages/Dashboard";
 import { AllLeads } from "./pages/leads/AllLeads";
 import LeadDetails from "./pages/leads/LeadDetails";
 import "./App.css";
+import Kanban from "./pages/Kanban";
+
 
 export const App = () => {
   const location = useLocation();
@@ -51,6 +53,8 @@ export const App = () => {
             <Route path="all" element={<AllLeads />} />
             <Route path="all/:id" element={<LeadDetails />} />
           </Route>
+          <Route path="kanban" element={<Kanban />} />
+            
         </Route>
 
         {/* Fallback */}
