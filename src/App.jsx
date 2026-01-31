@@ -1,24 +1,35 @@
 import React from "react";
-import { Routes, Route, Navigate, useLocation, Outlet, Link } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+  Outlet,
+  Link,
+} from "react-router-dom";
+
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
+
 import Dashboard from "./pages/Dashboard";
 import { AllLeads } from "./pages/leads/AllLeads";
 import LeadDetails from "./pages/leads/LeadDetails";
-import "./App.css";
 import Kanban from "./pages/Kanban";
 
+import "./App.css";
 
 export const App = () => {
   const location = useLocation();
 
-  // Detect leads routes
-  const isLeadsPage = location.pathname.startsWith("/dashboard/leads");
+  // Hide Header & Sidebar ONLY for leads/all pages
+  const hideLayout =
+    location.pathname === "/dashboard/leads/all" ||
+    location.pathname.startsWith("/dashboard/leads/all/");
 
   return (
     <div className="min-h-screen">
-      {/* Show Header only if NOT leads page */}
-      {!isLeadsPage && <Header />}
+      {/* Header */}
+      {!hideLayout && <Header />}
 
       <Routes>
         {/* Public Route */}
@@ -44,17 +55,19 @@ export const App = () => {
         {/* Dashboard Layout */}
         <Route
           path="/dashboard"
-          element={isLeadsPage ? <Outlet /> : <Sidebar />}
+          element={hideLayout ? <Outlet /> : <Sidebar />}
         >
           <Route index element={<Dashboard />} />
 
-          {/* Leads routes (no sidebar + no header) */}
+          {/* Leads Routes */}
           <Route path="leads">
+            {/* ❌ NO header + sidebar */}
             <Route path="all" element={<AllLeads />} />
             <Route path="all/:id" element={<LeadDetails />} />
+
+            {/* ✅ Header + Sidebar stays */}
+            <Route path="kanban" element={<Kanban />} />
           </Route>
-          <Route path="kanban" element={<Kanban />} />
-            
         </Route>
 
         {/* Fallback */}
@@ -63,3 +76,5 @@ export const App = () => {
     </div>
   );
 };
+
+export default App;
