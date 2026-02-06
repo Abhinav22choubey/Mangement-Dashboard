@@ -1,0 +1,186 @@
+import { useState } from "react";
+import { Mail, Phone, SquarePen, X } from "lucide-react";
+
+export default function ContactDetails() {
+  const [form, setForm] = useState({
+    name: "",
+    designation: "",
+    email: "",
+    phone: "",
+  });
+
+  const [contacts, setContacts] = useState([
+    {
+      id: 1,
+      name: "Ajay Singh",
+      designation: "Owner, SpriteEra IT Solutions",
+      email: "ajayverma@spriteera.com",
+      phone: "+917896541230",
+      primary: true,
+    },
+  ]);
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleAdd = () => {
+    if (!form.name || !form.email) return;
+
+    setContacts([
+      ...contacts,
+      {
+        id: Date.now(),
+        ...form,
+        primary: false,
+      },
+    ]);
+
+    setForm({ name: "", designation: "", email: "", phone: "" });
+  };
+
+  const handleDelete = (id) => {
+    setContacts(contacts.filter((c) => c.id !== id));
+  };
+
+  const makePrimary = (id) => {
+    setContacts(
+      contacts.map((c) => ({
+        ...c,
+        primary: c.id === id,
+      }))
+    );
+  };
+
+  return (
+    <div className="border border-black/10 rounded-md p-4 w-full">
+      {/* Header */}
+      <div className="flex justify-between items-center mb-2">
+        <h2 className="text15 font-semibold">2. Contact Details</h2>
+        <button className="text-(--primary) text15 font-semibold">
+          + Add Contact
+        </button>
+      </div>
+
+      {/* Add Contact Form */}
+      <div className="border border-black/10 rounded-md p-4 mb-3">
+        <h3 className="text15 font-semibold mb-2">Add Contact</h3>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <Input
+            label="Name"
+            placeholder="Enter Name"
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+          />
+          <Input
+            label="Designation"
+            placeholder="Enter Designation"
+            name="designation"
+            value={form.designation}
+            onChange={handleChange}
+          />
+          <Input
+            label="Email"
+            placeholder="Enter Email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+          />
+          <Input
+            label="Phone Number"
+            placeholder="Enter Phone Number"
+            name="phone"
+            value={form.phone}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button
+          onClick={handleAdd}
+          className="mt-4 bg-(--primary) text-white text12 px-4 py-1.5 rounded"
+        >
+          Add
+        </button>
+      </div>
+
+      {/* Contact List */}
+      <div className="space-y-4">
+        {contacts.map((c) => (
+          <div
+            key={c.id}
+            className="border border-black/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+          >
+            {/* Left */}
+            <div className="flex items-center gap-4">
+              <div className="w-9 h-9 rounded-full bg-gray-500 text-white center font-semibold">
+                {c.name[0]}
+              </div>
+
+              <div>
+                <p className="text14 font-medium">{c.name}</p>
+                <p className="text14 text-gray-500">{c.designation}</p>
+              </div>
+            </div>
+
+            {/* Middle */}
+            <div className="flex flex-col gap-1 text14 text-gray-500">
+              <div className="flex items-center gap-2">
+                <Mail size={16} />
+                {c.email}
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone size={16} />
+                {c.phone}
+              </div>
+            </div>
+
+            {/* Right */}
+            <div className="flex items-center gap-3">
+              {c.primary && (
+                <span className="text14 font-medium text-gray-500">
+                  Primary
+                </span>
+              )}
+
+              <button
+                onClick={() => makePrimary(c.id)}
+                className={`w-7 h-7 rounded-full border center ${
+                  c.primary
+                    ? "bg-gray-200"
+                    : "border-black/10 hover:bg-gray-100"
+                }`}
+              >
+                <SquarePen size={14} />
+              </button>
+
+              {!c.primary && (
+                <button
+                  onClick={() => handleDelete(c.id)}
+                  className="w-7 h-7 rounded-full bg-red-500 center"
+                >
+                  <X size={14} className="text-white" />
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- SMALL INPUT COMPONENT ---------------- */
+
+function Input({ label, ...props }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <label className="text14">{label}</label>
+      <input
+        {...props}
+        className="h-[35px] px-4 border border-black/25 rounded-md text14 outline-none focus:border-(--primary)"
+      />
+    </div>
+  );
+}

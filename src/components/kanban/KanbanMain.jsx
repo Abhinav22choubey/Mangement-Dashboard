@@ -183,7 +183,7 @@ export default function KanbanBoard() {
         measuring={{ droppable: { strategy: MeasuringStrategy.Always } }}
         onDragEnd={handleDragEnd}
       >
-        <div className="bg-[#F2F4F6] rounded-md w-full overflow-hidden">
+        <div className="bg-[#F2F4F6] min-h-[80vh] rounded-md w-full overflow-hidden">
           <div className="overflow-x-auto hide-scrollbar">
             <div className="flex gap-6 w-max py-4 px-4">
               {STATUSES.map((status) => (

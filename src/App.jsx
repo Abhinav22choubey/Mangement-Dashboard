@@ -17,6 +17,7 @@ import LeadDetails from "./pages/leads/LeadDetails";
 import Kanban from "./pages/Kanban";
 
 import "./App.css";
+import AddLeads from "./pages/AddLeads";
 
 export const App = () => {
   const location = useLocation();
@@ -67,6 +68,7 @@ export const App = () => {
 
             {/* ✅ Header + Sidebar stays */}
             <Route path="kanban" element={<Kanban />} />
+            <Route path="add" element={<AddLeads />} />
           </Route>
         </Route>
 
