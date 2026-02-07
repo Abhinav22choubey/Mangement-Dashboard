@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Mail, Phone, SquarePen, X } from "lucide-react";
+import Input from "../../common/Input";
 
 export default function ContactDetails() {
   const [form, setForm] = useState({
@@ -69,6 +70,7 @@ export default function ContactDetails() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <Input
             label="Name"
+            id="name"
             placeholder="Enter Name"
             name="name"
             value={form.name}
@@ -76,6 +78,7 @@ export default function ContactDetails() {
           />
           <Input
             label="Designation"
+            id="designation"
             placeholder="Enter Designation"
             name="designation"
             value={form.designation}
@@ -83,13 +86,16 @@ export default function ContactDetails() {
           />
           <Input
             label="Email"
+            id="email"
             placeholder="Enter Email"
             name="email"
+            type="email"
             value={form.email}
             onChange={handleChange}
           />
           <Input
             label="Phone Number"
+            id="phone"
             placeholder="Enter Phone Number"
             name="phone"
             value={form.phone}
@@ -171,16 +177,3 @@ export default function ContactDetails() {
   );
 }
 
-/* ---------------- SMALL INPUT COMPONENT ---------------- */
-
-function Input({ label, ...props }) {
-  return (
-    <div className="flex flex-col gap-1">
-      <label className="text14">{label}</label>
-      <input
-        {...props}
-        className="h-[35px] px-4 border border-black/25 rounded-md text14 outline-none focus:border-(--primary)"
-      />
-    </div>
-  );
-}
