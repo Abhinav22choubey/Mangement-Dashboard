@@ -67,7 +67,7 @@ export default function ContactDetails() {
       <div className="border border-black/10 rounded-md p-4 mb-3">
         <h3 className="text15 font-semibold mb-2">Add Contact</h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
           <Input
             label="Name"
             id="name"
@@ -152,13 +152,13 @@ export default function ContactDetails() {
 
               <button
                 onClick={() => makePrimary(c.id)}
-                className={`w-7 h-7 rounded-full border center ${
+                className={`w-7 h-7 rounded-full  center ${
                   c.primary
-                    ? "bg-gray-200"
-                    : "border-black/10 hover:bg-gray-100"
+                    ? "bg-white border border-black/10 text-black/50 "
+                    : "bg-blue-400 text-white"
                 }`}
               >
-                <SquarePen size={14} />
+                <SquarePen className="" size={14} />
               </button>
 
               {!c.primary && (
