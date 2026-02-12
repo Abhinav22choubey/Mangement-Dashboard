@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SquarePen, X, Plus, Dot} from "lucide-react";
+import { SquarePen, X, Plus, Dot } from "lucide-react";
 import Input from "../../common/Input";
 import Select from "../../common/Select";
 
@@ -92,8 +92,11 @@ export default function InterestedProjects() {
     }));
   };
 
-  const handleAddProject = () => {
+  const handleAddProject = (e) => {
+    e.preventDefault(); // ✅ prevent parent form submission
+
     if (!formData.intent || !formData.project) return;
+
     setProjects(prev => [...prev, formData]);
     setFormData(initialForm);
     setFeatureInput("");
@@ -114,7 +117,10 @@ export default function InterestedProjects() {
           3. Interested Projects / Property
         </h2>
 
-        <button className="flex items-center gap-2  text15 font-semibold text-(--primary)">
+        <button
+          type="button"
+          className="flex items-center gap-2 text15 font-semibold text-(--primary)"
+        >
           <Plus size={16} />
           Add Project / Property
         </button>
@@ -122,7 +128,9 @@ export default function InterestedProjects() {
 
       {/* ADD PROJECT FORM */}
       <div className="border border-black/10 rounded-md bg-white p-5 space-y-2">
-        <h3 className="text15 font-semibold mb-3">Add Project / Property</h3>
+        <h3 className="text15 font-semibold mb-3">
+          Add Project / Property
+        </h3>
 
         {/* ROW 1 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
@@ -185,9 +193,10 @@ export default function InterestedProjects() {
 
         {/* KEY FEATURES */}
         <div className="space-y-1">
-          <label className="text14 ">Key Features</label>
+          <label className="text14">Key Features</label>
 
           <input
+            type="text"
             className="w-full h-[35px] px-3 text14 border border-black/25 rounded-md
             focus:outline-none focus:ring-1 focus:ring-(--primary)"
             placeholder="Enter Key Features that the client want (Press enter to add)"
@@ -208,6 +217,7 @@ export default function InterestedProjects() {
 
                   <div className="flex gap-3">
                     <button
+                      type="button"
                       onClick={() => editFeature(feature, index)}
                       className="text-(--primary)"
                     >
@@ -215,6 +225,7 @@ export default function InterestedProjects() {
                     </button>
 
                     <button
+                      type="button"
                       onClick={() => removeFeature(index)}
                       className="text-[#EB3223]"
                     >
@@ -237,6 +248,7 @@ export default function InterestedProjects() {
 
         {/* ADD BUTTON */}
         <button
+          type="button"
           onClick={handleAddProject}
           className="w-[56px] h-[25px] bg-(--primary) text-white text12 rounded-[3px]"
         >
@@ -250,7 +262,6 @@ export default function InterestedProjects() {
           key={index}
           className="relative border border-black/5 rounded-md bg-white"
         >
-          {/* TOP STRIP */}
           <div
             className={`h-[10px] rounded-t-md ${
               item.status === "Ready to Move"
@@ -259,12 +270,16 @@ export default function InterestedProjects() {
             }`}
           />
 
-          {/* ACTION BUTTONS */}
           <div className="absolute top-4 right-4 flex gap-2">
-            <button className="w-[25px] h-[25px] rounded-full bg-(--primary) flex center">
+            <button
+              type="button"
+              className="w-[25px] h-[25px] rounded-full bg-(--primary) flex center"
+            >
               <SquarePen size={14} className="text-white" />
             </button>
+
             <button
+              type="button"
               onClick={() => removeProject(index)}
               className="w-[25px] h-[25px] rounded-full bg-[#EB3223] flex center"
             >
@@ -272,10 +287,7 @@ export default function InterestedProjects() {
             </button>
           </div>
 
-          {/* CONTENT */}
           <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-6">
-
-            {/* COLUMN 1 */}
             <div className="space-y-3">
               <Info label="Lead Intent" value={item.intent} />
               <Info label="Preferred Location" value={item.location} />
@@ -286,7 +298,7 @@ export default function InterestedProjects() {
                 </p>
                 <ul>
                   {item.features.map((f, i) => (
-                    <li key={i} className="text14 font-medium flex  gap-0">
+                    <li key={i} className="text14 font-medium flex gap-0">
                       <Dot /> {f}
                     </li>
                   ))}
@@ -296,13 +308,11 @@ export default function InterestedProjects() {
               <Info label="Notes" value={item.note} />
             </div>
 
-            {/* COLUMN 2 */}
             <div className="space-y-3">
               <Info label="Project Name" value={item.project} highlight />
               <Info label="Budget" value={item.budget} danger />
             </div>
 
-            {/* COLUMN 3 */}
             <div className="space-y-6">
               <Info label="Type" value={item.type} />
               <Info label="Property Status" value={item.status} />

@@ -206,7 +206,7 @@ const MultiSearchSelect = ({
   return (
     <div ref={wrapperRef} className="w-full relative">
       {label && (
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm mb-2">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}

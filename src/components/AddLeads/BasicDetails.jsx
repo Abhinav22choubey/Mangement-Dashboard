@@ -37,56 +37,55 @@ export default function BasicDetails() {
   return (
     <div className="max-width flex-col border border-black/10 rounded-md px-4 py-4">
 
-      {/* TITLE */}
       <h2 className="text15 font-semibold mb-4">
         1. Basic Details
       </h2>
 
-      {/* CONTENT */}
       <div className="flex flex-col pl-5 gap-2 w-full">
 
-        {/* NAME & PHONE */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
           <Input
+            name="name"
             label="Name"
             placeholder="Enter Name"
             inputClass="h-[35px]"
           />
 
           <Input
+            name="phone"
+            type="tel"
             label="Phone Number"
             placeholder="Enter Phone Number"
             inputClass="h-[35px]"
           />
         </div>
 
-        {/* ORGANIZATION / SOURCE / LEAD */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
-          {/* Organization → SAME width as Name */}
           <div className="lg:col-span-2">
             <Input
+              name="organization"
               label="Organization"
               placeholder="Enter Organization Name"
               inputClass="h-[35px]"
             />
           </div>
 
-          <Select label="Source" selectClass="h-[35px]">
+          <Select name="source" label="Source" selectClass="h-[35px]">
             <option value="">Select Source</option>
             <option>Website</option>
             <option>Referral</option>
             <option>Campaign</option>
           </Select>
 
-          <Select label="Lead Owner" selectClass="h-[35px]">
+          <Select name="leadOwner" label="Lead Owner" selectClass="h-[35px]">
             <option value="">Select Lead</option>
             <option>Admin</option>
             <option>Sales Team</option>
           </Select>
         </div>
 
-        {/* ASSIGN PEOPLE */}
         <MultiSearchSelect
+          name="assignedPeople"
           label="Assign People"
           placeholder="Select People (Press enter to add)"
           containerClass="w-full"
@@ -103,8 +102,8 @@ export default function BasicDetails() {
           })}
         />
 
-        {/* LABEL */}
         <MultiSearchSelect
+          name="labels"
           label="Label"
           placeholder="Enter label (Press enter to add)"
           containerClass="w-full"
@@ -121,10 +120,11 @@ export default function BasicDetails() {
           })}
         />
 
-        {/* WEBSITE / VAT / GST */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
           <div className="lg:col-span-2">
             <Input
+              name="website"
+              type="url"
               label="Website"
               placeholder="Enter Website"
               inputClass="h-[35px]"
@@ -132,36 +132,37 @@ export default function BasicDetails() {
           </div>
 
           <Input
+            name="vatNumber"
             label="VAT Number"
             placeholder="Enter VAT Number"
             inputClass="h-[35px]"
           />
 
           <Input
+            name="gstNumber"
             label="GST Number"
             placeholder="Enter GST Number"
             inputClass="h-[35px]"
           />
         </div>
 
-        {/* ADDRESS */}
         <TextArea
+          name="address"
           label="Address"
           placeholder="Enter Address"
           rows={2}
           className="w-full"
         />
 
-        {/* CITY / STATE / ZIP */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          <Select label="City" selectClass="h-[35px]">
+          <Select name="city" label="City" selectClass="h-[35px]">
             <option value="">Select City</option>
             <option>Delhi</option>
             <option>Mumbai</option>
             <option>Bangalore</option>
           </Select>
 
-          <Select label="State" selectClass="h-[35px]">
+          <Select name="state" label="State" selectClass="h-[35px]">
             <option value="">Select State</option>
             <option>UP</option>
             <option>Maharashtra</option>
@@ -169,6 +170,7 @@ export default function BasicDetails() {
           </Select>
 
           <Input
+            name="zipCode"
             label="Zip Code"
             placeholder="Enter Zip Code"
             inputClass="h-[35px]"

@@ -25,7 +25,9 @@ export default function ContactDetails() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
+    e.preventDefault(); // Prevent parent form submission
+
     if (!form.name || !form.email) return;
 
     setContacts([
@@ -58,7 +60,10 @@ export default function ContactDetails() {
       {/* Header */}
       <div className="flex justify-between items-center mb-2">
         <h2 className="text15 font-semibold">2. Contact Details</h2>
-        <button className="text-(--primary) text15 font-semibold">
+        <button
+          type="button"
+          className="text-(--primary) text15 font-semibold"
+        >
           + Add Contact
         </button>
       </div>
@@ -70,7 +75,7 @@ export default function ContactDetails() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
           <Input
             label="Name"
-            id="name"
+            id="contactName"
             placeholder="Enter Name"
             name="name"
             value={form.name}
@@ -98,12 +103,14 @@ export default function ContactDetails() {
             id="phone"
             placeholder="Enter Phone Number"
             name="phone"
+            type="tel"
             value={form.phone}
             onChange={handleChange}
           />
         </div>
 
         <button
+          type="button"
           onClick={handleAdd}
           className="mt-4 bg-(--primary) text-white text12 px-4 py-1.5 rounded"
         >
@@ -151,18 +158,20 @@ export default function ContactDetails() {
               )}
 
               <button
+                type="button"
                 onClick={() => makePrimary(c.id)}
-                className={`w-7 h-7 rounded-full  center ${
+                className={`w-7 h-7 rounded-full center ${
                   c.primary
                     ? "bg-white border border-black/10 text-black/50 "
                     : "bg-blue-400 text-white"
                 }`}
               >
-                <SquarePen className="" size={14} />
+                <SquarePen size={14} />
               </button>
 
               {!c.primary && (
                 <button
+                  type="button"
                   onClick={() => handleDelete(c.id)}
                   className="w-7 h-7 rounded-full bg-red-500 center"
                 >
@@ -176,4 +185,3 @@ export default function ContactDetails() {
     </div>
   );
 }
-
