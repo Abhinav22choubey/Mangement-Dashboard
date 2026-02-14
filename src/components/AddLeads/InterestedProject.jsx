@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // ✅ added useEffect
 import { SquarePen, X, Plus, Dot } from "lucide-react";
 import Input from "../../common/Input";
 import Select from "../../common/Select";
@@ -15,7 +15,8 @@ const initialForm = {
   note: "",
 };
 
-export default function InterestedProjects() {
+export default function InterestedProjects({ formData: parentFormData, setFormData: setParentFormData }) { // ✅ added props
+
   const [projects, setProjects] = useState([
     {
       intent: "Buy - Builder Project",
@@ -53,6 +54,16 @@ export default function InterestedProjects() {
   const [formData, setFormData] = useState(initialForm);
   const [featureInput, setFeatureInput] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
+
+  // ✅ ADDED: Sync projects with parent form
+  useEffect(() => {
+    if (setParentFormData) {
+      setParentFormData(prev => ({
+        ...prev,
+        projects: projects
+      }));
+    }
+  }, [projects, setParentFormData]);
 
   /* ---------------- HANDLERS ---------------- */
   const handleChange = (key, value) => {

@@ -1,18 +1,65 @@
-import React from 'react'
+import React, { useState } from 'react'
 import BasicDetails from '../components/AddLeads/BasicDetails'
 import ContactDetails from '../components/AddLeads/ContactDetails'
-import InterestedProject from '../components/AddLeads/InterestedProject'
+import InterestedProjects from '../components/AddLeads/InterestedProject'
 
 function AddLeads() {
 
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    organization: '',
+    source: '',
+    leadOwner: '',
+    assignedPeople: [],
+    labels: [],
+    website: '',
+    vatNumber: '',
+    gstNumber: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
+    contacts: [],
+    projects: []
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted");
+    console.log("FINAL DATA:", formData);
   };
 
   const handleSaveAndAddAnother = (e) => {
     e.preventDefault();
-    console.log("Save & Add Another Clicked");
+    console.log("SAVE & ADD:", formData);
+
+    setFormData({
+      name: '',
+      phone: '',
+      organization: '',
+      source: '',
+      leadOwner: '',
+      assignedPeople: [],
+      labels: [],
+      website: '',
+      vatNumber: '',
+      gstNumber: '',
+      address: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      contacts: [],
+      projects: []
+    });
   };
 
   return (
@@ -29,9 +76,21 @@ function AddLeads() {
     >
       <h2 className="text-lg font-semibold mb-0">Add Leads</h2>
 
-      <BasicDetails />
-      <ContactDetails />
-      <InterestedProject />
+      <BasicDetails 
+        formData={formData}
+        setFormData={setFormData}
+        handleChange={handleChange}
+      />
+
+      <ContactDetails 
+        formData={formData}
+        setFormData={setFormData}
+      />
+
+      <InterestedProjects 
+        formData={formData}
+        setFormData={setFormData}
+      />
 
       <div className='flex gap-3'>
         <button

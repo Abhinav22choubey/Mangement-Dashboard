@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, Phone, SquarePen, X } from "lucide-react";
 import Input from "../../common/Input";
 
-export default function ContactDetails() {
+export default function ContactDetails({ formData, setFormData }) {
   const [form, setForm] = useState({
     name: "",
     designation: "",
@@ -20,6 +20,16 @@ export default function ContactDetails() {
       primary: true,
     },
   ]);
+
+  // 🔥 Added: Sync contacts with parent form
+  useEffect(() => {
+    if (setFormData) {
+      setFormData((prev) => ({
+        ...prev,
+        contacts: contacts,
+      }));
+    }
+  }, [contacts, setFormData]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

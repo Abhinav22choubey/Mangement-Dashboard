@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import Input from "../../common/Input.jsx";
 import Select from "../../common/Select.jsx";
 import TextArea from "../../common/TextArea.jsx";
@@ -30,9 +30,22 @@ const fetchLabels = async (query) =>
   );
 
 /* ---------------- COMPONENT ---------------- */
-export default function BasicDetails() {
-  const [people, setPeople] = useState([]);
-  const [labels, setLabels] = useState([]);
+export default function BasicDetails({ formData, setFormData, handleChange }) {
+
+  // sync multi-select to parent state
+  const handlePeopleChange = (values) => {
+    setFormData(prev => ({
+      ...prev,
+      assignedPeople: values
+    }));
+  };
+
+  const handleLabelsChange = (values) => {
+    setFormData(prev => ({
+      ...prev,
+      labels: values
+    }));
+  };
 
   return (
     <div className="max-width flex-col border border-black/10 rounded-md px-4 py-4">
@@ -49,6 +62,8 @@ export default function BasicDetails() {
             label="Name"
             placeholder="Enter Name"
             inputClass="h-[35px]"
+            value={formData.name}
+            onChange={handleChange}
           />
 
           <Input
@@ -57,6 +72,8 @@ export default function BasicDetails() {
             label="Phone Number"
             placeholder="Enter Phone Number"
             inputClass="h-[35px]"
+            value={formData.phone}
+            onChange={handleChange}
           />
         </div>
 
@@ -67,17 +84,31 @@ export default function BasicDetails() {
               label="Organization"
               placeholder="Enter Organization Name"
               inputClass="h-[35px]"
+              value={formData.organization}
+              onChange={handleChange}
             />
           </div>
 
-          <Select name="source" label="Source" selectClass="h-[35px]">
+          <Select
+            name="source"
+            label="Source"
+            selectClass="h-[35px]"
+            value={formData.source}
+            onChange={handleChange}
+          >
             <option value="">Select Source</option>
             <option>Website</option>
             <option>Referral</option>
             <option>Campaign</option>
           </Select>
 
-          <Select name="leadOwner" label="Lead Owner" selectClass="h-[35px]">
+          <Select
+            name="leadOwner"
+            label="Lead Owner"
+            selectClass="h-[35px]"
+            value={formData.leadOwner}
+            onChange={handleChange}
+          >
             <option value="">Select Lead</option>
             <option>Admin</option>
             <option>Sales Team</option>
@@ -87,12 +118,9 @@ export default function BasicDetails() {
         <MultiSearchSelect
           name="assignedPeople"
           label="Assign People"
-          placeholder="Select People (Press enter to add)"
-          containerClass="w-full"
-          inputClass="h-[35px]"
-          chipClass="h-[30px] px-2 gap-2 text14"
-          selectedValues={people}
-          onChange={setPeople}
+          placeholder="Select People"
+          selectedValues={formData.assignedPeople || []}
+          onChange={handlePeopleChange}
           fetchOptions={fetchPeople}
           canAddNew
           addNewLabel="Add new person"
@@ -105,12 +133,9 @@ export default function BasicDetails() {
         <MultiSearchSelect
           name="labels"
           label="Label"
-          placeholder="Enter label (Press enter to add)"
-          containerClass="w-full"
-          inputClass="h-[35px]"
-          chipClass="h-[24px] px-2 text-white text12 bg-(--primary)"
-          selectedValues={labels}
-          onChange={setLabels}
+          placeholder="Enter label"
+          selectedValues={formData.labels || []}
+          onChange={handleLabelsChange}
           fetchOptions={fetchLabels}
           canAddNew
           addNewLabel="Create label"
@@ -128,6 +153,8 @@ export default function BasicDetails() {
               label="Website"
               placeholder="Enter Website"
               inputClass="h-[35px]"
+              value={formData.website}
+              onChange={handleChange}
             />
           </div>
 
@@ -136,6 +163,8 @@ export default function BasicDetails() {
             label="VAT Number"
             placeholder="Enter VAT Number"
             inputClass="h-[35px]"
+            value={formData.vatNumber}
+            onChange={handleChange}
           />
 
           <Input
@@ -143,6 +172,8 @@ export default function BasicDetails() {
             label="GST Number"
             placeholder="Enter GST Number"
             inputClass="h-[35px]"
+            value={formData.gstNumber}
+            onChange={handleChange}
           />
         </div>
 
@@ -151,18 +182,29 @@ export default function BasicDetails() {
           label="Address"
           placeholder="Enter Address"
           rows={2}
-          className="w-full"
+          value={formData.address}
+          onChange={handleChange}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-          <Select name="city" label="City" selectClass="h-[35px]">
+          <Select
+            name="city"
+            label="City"
+            value={formData.city}
+            onChange={handleChange}
+          >
             <option value="">Select City</option>
             <option>Delhi</option>
             <option>Mumbai</option>
             <option>Bangalore</option>
           </Select>
 
-          <Select name="state" label="State" selectClass="h-[35px]">
+          <Select
+            name="state"
+            label="State"
+            value={formData.state}
+            onChange={handleChange}
+          >
             <option value="">Select State</option>
             <option>UP</option>
             <option>Maharashtra</option>
@@ -174,6 +216,8 @@ export default function BasicDetails() {
             label="Zip Code"
             placeholder="Enter Zip Code"
             inputClass="h-[35px]"
+            value={formData.zipCode}
+            onChange={handleChange}
           />
         </div>
 
