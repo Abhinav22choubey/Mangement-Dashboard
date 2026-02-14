@@ -15,7 +15,7 @@ const initialForm = {
   note: "",
 };
 
-export default function InterestedProjects({ formData: parentFormData, setFormData: setParentFormData }) { // ✅ added props
+export default function InterestedProjects({ formData: parentFormData, setFormData: setParentFormData, errors }) { // ✅ added errors
 
   const [projects, setProjects] = useState([
     {
@@ -55,7 +55,7 @@ export default function InterestedProjects({ formData: parentFormData, setFormDa
   const [featureInput, setFeatureInput] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
 
-  // ✅ ADDED: Sync projects with parent form
+  // ✅ Sync projects with parent form
   useEffect(() => {
     if (setParentFormData) {
       setParentFormData(prev => ({
@@ -104,7 +104,7 @@ export default function InterestedProjects({ formData: parentFormData, setFormDa
   };
 
   const handleAddProject = (e) => {
-    e.preventDefault(); // ✅ prevent parent form submission
+    e.preventDefault();
 
     if (!formData.intent || !formData.project) return;
 
@@ -121,6 +121,11 @@ export default function InterestedProjects({ formData: parentFormData, setFormDa
   /* ---------------- UI ---------------- */
   return (
     <div className="max-width border border-black/10 rounded-md px-4 py-4 flex flex-col gap-4">
+
+      {/* 🔥 GLOBAL PROJECT ERROR */}
+      {errors?.projects && (
+        <p className="text-red-500 text-sm">{errors.projects}</p>
+      )}
 
       {/* HEADER */}
       <div className="flex items-center justify-between">

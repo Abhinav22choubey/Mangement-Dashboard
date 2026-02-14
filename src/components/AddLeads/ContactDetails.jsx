@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Mail, Phone, SquarePen, X } from "lucide-react";
 import Input from "../../common/Input";
 
-export default function ContactDetails({ formData, setFormData }) {
+export default function ContactDetails({ formData, setFormData, errors }) { // ✅ added errors
   const [form, setForm] = useState({
     name: "",
     designation: "",
@@ -21,7 +21,7 @@ export default function ContactDetails({ formData, setFormData }) {
     },
   ]);
 
-  // 🔥 Added: Sync contacts with parent form
+  // 🔥 Sync contacts with parent form
   useEffect(() => {
     if (setFormData) {
       setFormData((prev) => ({
@@ -36,7 +36,7 @@ export default function ContactDetails({ formData, setFormData }) {
   };
 
   const handleAdd = (e) => {
-    e.preventDefault(); // Prevent parent form submission
+    e.preventDefault();
 
     if (!form.name || !form.email) return;
 
@@ -67,6 +67,12 @@ export default function ContactDetails({ formData, setFormData }) {
 
   return (
     <div className="border border-black/10 rounded-md p-4 w-full">
+
+      {/* 🔥 GLOBAL CONTACT ERROR */}
+      {errors?.contacts && (
+        <p className="text-red-500 text-sm mb-2">{errors.contacts}</p>
+      )}
+
       {/* Header */}
       <div className="flex justify-between items-center mb-2">
         <h2 className="text15 font-semibold">2. Contact Details</h2>
@@ -83,40 +89,65 @@ export default function ContactDetails({ formData, setFormData }) {
         <h3 className="text15 font-semibold mb-2">Add Contact</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-          <Input
-            label="Name"
-            id="contactName"
-            placeholder="Enter Name"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-          />
-          <Input
-            label="Designation"
-            id="designation"
-            placeholder="Enter Designation"
-            name="designation"
-            value={form.designation}
-            onChange={handleChange}
-          />
-          <Input
-            label="Email"
-            id="email"
-            placeholder="Enter Email"
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-          />
-          <Input
-            label="Phone Number"
-            id="phone"
-            placeholder="Enter Phone Number"
-            name="phone"
-            type="tel"
-            value={form.phone}
-            onChange={handleChange}
-          />
+
+          <div>
+            <Input
+              label="Name"
+              id="contactName"
+              placeholder="Enter Name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+            />
+            {/* 🔥 ERROR */}
+            {errors?.contact_name_0 && (
+              <p className="text-red-500 text-xs">
+                {errors.contact_name_0}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <Input
+              label="Designation"
+              id="designation"
+              placeholder="Enter Designation"
+              name="designation"
+              value={form.designation}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div>
+            <Input
+              label="Email"
+              id="email"
+              placeholder="Enter Email"
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+            />
+            {/* 🔥 ERROR */}
+            {errors?.contact_email_0 && (
+              <p className="text-red-500 text-xs">
+                {errors.contact_email_0}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <Input
+              label="Phone Number"
+              id="phone"
+              placeholder="Enter Phone Number"
+              name="phone"
+              type="tel"
+              value={form.phone}
+              onChange={handleChange}
+            />
+          </div>
+
         </div>
 
         <button
@@ -130,7 +161,7 @@ export default function ContactDetails({ formData, setFormData }) {
 
       {/* Contact List */}
       <div className="space-y-4">
-        {contacts.map((c) => (
+        {contacts.map((c, index) => (
           <div
             key={c.id}
             className="border border-black/10 rounded-xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
@@ -145,6 +176,20 @@ export default function ContactDetails({ formData, setFormData }) {
                 <p className="text14 font-medium">{c.name}</p>
                 <p className="text14 text-gray-500">{c.designation}</p>
               </div>
+            </div>
+
+            {/* 🔥 PER CONTACT ERRORS */}
+            <div>
+              {errors?.[`contact_name_${index}`] && (
+                <p className="text-red-500 text-xs">
+                  {errors[`contact_name_${index}`]}
+                </p>
+              )}
+              {errors?.[`contact_email_${index}`] && (
+                <p className="text-red-500 text-xs">
+                  {errors[`contact_email_${index}`]}
+                </p>
+              )}
             </div>
 
             {/* Middle */}

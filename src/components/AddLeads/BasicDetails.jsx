@@ -30,7 +30,7 @@ const fetchLabels = async (query) =>
   );
 
 /* ---------------- COMPONENT ---------------- */
-export default function BasicDetails({ formData, setFormData, handleChange }) {
+export default function BasicDetails({ formData, setFormData, handleChange, errors }) {
 
   // sync multi-select to parent state
   const handlePeopleChange = (values) => {
@@ -57,24 +57,34 @@ export default function BasicDetails({ formData, setFormData, handleChange }) {
       <div className="flex flex-col pl-5 gap-2 w-full">
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
-          <Input
-            name="name"
-            label="Name"
-            placeholder="Enter Name"
-            inputClass="h-[35px]"
-            value={formData.name}
-            onChange={handleChange}
-          />
+          <div>
+            <Input
+              name="name"
+              label="Name"
+              placeholder="Enter Name"
+              inputClass="h-[35px]"
+              value={formData.name}
+              onChange={handleChange}
+            />
+            {errors?.name && (
+              <p className="text-red-500 text-xs">{errors.name}</p>
+            )}
+          </div>
 
-          <Input
-            name="phone"
-            type="tel"
-            label="Phone Number"
-            placeholder="Enter Phone Number"
-            inputClass="h-[35px]"
-            value={formData.phone}
-            onChange={handleChange}
-          />
+          <div>
+            <Input
+              name="phone"
+              type="tel"
+              label="Phone Number"
+              placeholder="Enter Phone Number"
+              inputClass="h-[35px]"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            {errors?.phone && (
+              <p className="text-red-500 text-xs">{errors.phone}</p>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-6">
