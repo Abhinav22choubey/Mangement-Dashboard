@@ -50,7 +50,7 @@ const pieData = [
   { name: "Refund Complete", value: 0.6, color: "#CB30E0" },
 ];
 
-// ---------------- PIE LABEL (FIXED LIKE FIGMA) ----------------
+// ---------------- PIE LABEL ----------------
 const renderCustomizedLabel = ({
   cx,
   cy,
@@ -71,14 +71,12 @@ const renderCustomizedLabel = ({
 
   return (
     <>
-      {/* connector line */}
       <path
         d={`M${sx},${sy} L${ex},${ey} L${mx},${my}`}
         stroke="black"
         fill="none"
       />
 
-      {/* label text */}
       <text
         x={mx + (mx > cx ? 5 : -5)}
         y={my}
@@ -111,81 +109,42 @@ const StatCard = ({ title, value, bg, iconBg, Icon }) => {
 // ---------------- MAIN ----------------
 const Booking = () => {
   return (
-    <div className=" min-h-screen ">
-
-      {/* FIXED WIDTH CONTAINER */}
-      <div className="  w-full ">
-
-        {/* WHITE PANEL */}
+    <div className="min-h-screen">
+      <div className="w-full">
         <div className="bg-white rounded-md p-6 w-full">
 
-          {/* HEADER */}
-          <h1 className="text30 font-semibold mb-6">Booking Dashboard</h1>
+          <h1 className="text25 font-semibold mb-6">Booking Dashboard</h1>
 
           {/* STATS */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-            <StatCard
-              title="Total Bookings"
-              value="998"
-              bg="bg-blue-50"
-              iconBg="bg-[var(--sky)]"
-              Icon={Building2}
-            />
-
-            <StatCard
-              title="Today's New Booking"
-              value="5"
-              bg="bg-yellow-50"
-              iconBg="bg-[var(--yellow)]"
-              Icon={ClipboardList}
-            />
-
-            <StatCard
-              title="Pending Booking"
-              value="15"
-              bg="bg-yellow-50"
-              iconBg="bg-[var(--yellow)]"
-              Icon={ClipboardList}
-            />
-
-            <StatCard
-              title="Cancelled Booking"
-              value="135"
-              bg="bg-orange-50"
-              iconBg="bg-orange-400"
-              Icon={CheckCircle}
-            />
+            <StatCard title="Total Bookings" value="998" bg="bg-blue-50" iconBg="bg-[var(--sky)]" Icon={Building2} />
+            <StatCard title="Today's New Booking" value="5" bg="bg-yellow-50" iconBg="bg-[var(--yellow)]" Icon={ClipboardList} />
+            <StatCard title="Pending Booking" value="15" bg="bg-yellow-50" iconBg="bg-[var(--yellow)]" Icon={ClipboardList} />
+            <StatCard title="Cancelled Booking" value="135" bg="bg-orange-50" iconBg="bg-orange-400" Icon={CheckCircle} />
           </div>
 
           {/* REVENUE */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-4">
-
             <StatCard title="Total Revenue" value="₹ 15.3 Cr" bg="bg-yellow-50" iconBg="bg-[var(--yellow)]" Icon={Building2} />
             <StatCard title="Total Received Amount" value="₹ 5.3 Cr" bg="bg-orange-50" iconBg="bg-orange-400" Icon={Building2} />
             <StatCard title="Total Pending Amount" value="₹ 10 Cr" bg="bg-orange-50" iconBg="bg-orange-400" Icon={Building2} />
             <StatCard title="Today Revenue" value="₹ 147 Lakh" bg="bg-orange-50" iconBg="bg-orange-400" Icon={Building2} />
-
           </div>
 
           {/* ACTIONABLE */}
           <h2 className="text25 font-semibold mt-8 mb-4">Actionable Client</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
             <StatCard title="New Booking" value="105" bg="bg-yellow-50" iconBg="bg-[var(--yellow)]" Icon={ClipboardList} />
             <StatCard title="Token Amount Paid" value="₹ 5.3 Cr" bg="bg-orange-50" iconBg="bg-orange-400" Icon={ClipboardList} />
             <StatCard title="Agreement Pending" value="50" bg="bg-orange-50" iconBg="bg-orange-400" Icon={ClipboardList} />
             <StatCard title="Complete" value="30" bg="bg-orange-50" iconBg="bg-orange-400" Icon={CheckCircle} />
             <StatCard title="Cancelled Booking" value="5" bg="bg-yellow-50" iconBg="bg-[var(--yellow)]" Icon={CheckCircle} />
             <StatCard title="Refund Initiated" value="₹ 10 Lakhs" bg="bg-orange-50" iconBg="bg-orange-400" Icon={CheckCircle} />
-
           </div>
 
           {/* GRAPHS */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-
-            {/* WEEKLY */}
             <div className="bg-white p-5 rounded-xl shadow">
               <h3 className="text20 font-semibold mb-4">Weekly booking graph</h3>
               <ResponsiveContainer width="100%" height={250}>
@@ -198,7 +157,6 @@ const Booking = () => {
               </ResponsiveContainer>
             </div>
 
-            {/* MONTHLY */}
             <div className="bg-white p-5 rounded-xl shadow">
               <h3 className="text20 font-semibold mb-4">Monthly Revenue Graph</h3>
               <ResponsiveContainer width="100%" height={250}>
@@ -210,7 +168,6 @@ const Booking = () => {
                 </LineChart>
               </ResponsiveContainer>
             </div>
-
           </div>
 
           {/* PIE */}
@@ -219,10 +176,12 @@ const Booking = () => {
 
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
 
-              {/* PIE CHART */}
               <div className="flex justify-center w-full lg:w-1/2">
-                <ResponsiveContainer width={350} height={350}>
-                  <PieChart>
+                <ResponsiveContainer width={400} height={350}>
+                  <PieChart
+                    margin={{ top: 20, right: 80, left: 80, bottom: 20 }}
+                    style={{ overflow: "visible" }}
+                  >
                     <Pie
                       data={pieData}
                       dataKey="value"
@@ -241,8 +200,7 @@ const Booking = () => {
               </div>
 
               {/* LEGEND */}
-              <div className="space-y-6 w-full lg:w-1/2">
-
+              <div className="space-y-6 ml-3 w-full lg:w-1/2">
                 <div className="flex items-center gap-4">
                   <div className="w-8 h-4 bg-green-500" />
                   <p className="text18">Total Amount Received: ₹ 2.6 Cr</p>
@@ -262,7 +220,6 @@ const Booking = () => {
                   <div className="w-8 h-4 bg-purple-500" />
                   <p className="text18">Total Refund Complete: ₹ 60 Lakhs</p>
                 </div>
-
               </div>
 
             </div>
