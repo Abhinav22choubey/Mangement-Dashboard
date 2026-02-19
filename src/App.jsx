@@ -15,7 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import { AllLeads } from "./pages/leads/AllLeads";
 import LeadDetails from "./pages/leads/LeadDetails";
 import Kanban from "./pages/Kanban";
-
+import Bookings from "./pages/Bookings";
 import "./App.css";
 import AddLeads from "./pages/AddLeads";
 
@@ -70,6 +70,7 @@ export const App = () => {
             <Route path="kanban" element={<Kanban />} />
             <Route path="add" element={<AddLeads />} />
           </Route>
+          <Route path="Bookings" element={<Bookings />} />
         </Route>
 
         {/* Fallback */}

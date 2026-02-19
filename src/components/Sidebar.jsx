@@ -50,7 +50,7 @@ const Sidebar = () => {
   {
     name: "Booking",
     icon: <CheckCircle size={20} />,
-    link: "/dashboard/booking",
+    link: "/dashboard/bookings",
   },
   {
     name: "Client",
