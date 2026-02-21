@@ -7,6 +7,7 @@ import {
   Tooltip,
   ResponsiveContainer,
   PieChart,
+  CartesianGrid,
   Pie,
   Cell,
 } from "recharts";
@@ -93,7 +94,7 @@ const renderCustomizedLabel = ({
 // ---------------- CARD ----------------
 const StatCard = ({ title, value, bg, iconBg, Icon }) => {
   return (
-    <div className={`flex justify-between items-center p-4 rounded-xl ${bg}`}>
+    <div className={`flex justify-between items-center p-2 px-4 rounded-xl ${bg}`}>
       <div className={`w-10 h-10 flex items-center justify-center rounded-md ${iconBg}`}>
         <Icon size={18} color="#fff" />
       </div>
@@ -145,39 +146,41 @@ const Booking = () => {
 
           {/* GRAPHS */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
-            <div className="bg-white p-5 rounded-xl shadow">
+            <div className="bg-white p-5 rounded-xl shadow-[0_0_5px_rgba(0,0,0,0.2)]">
               <h3 className="text20 font-semibold mb-4">Weekly booking graph</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={weeklyData}>
+                  <CartesianGrid strokeDasharray="6 6" className="opacity-12" stroke="#000000" />
                   <XAxis dataKey="day" />
                   <YAxis />
-                  <Tooltip />
-                  <Line type="monotone" dataKey="value" />
+                  <Tooltip stroke="#000000" />
+                  <Line dot={{fill:"#000000"}} stroke="#000000" strokeWidth={"2"} type="line" dataKey="value" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
-            <div className="bg-white p-5 rounded-xl shadow">
+            <div className="bg-white p-5 rounded-xl shadow-[0_0_5px_rgba(0,0,0,0.2)]">
               <h3 className="text20 font-semibold mb-4">Monthly Revenue Graph</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <LineChart data={monthlyData}>
+                   <CartesianGrid strokeDasharray="6 6" className="opacity-12" stroke="#000000" />
                   <XAxis dataKey="month" />
                   <YAxis />
                   <Tooltip />
-                  <Line type="monotone" dataKey="value" />
+                  <Line dot={{fill:"#000000"}} stroke="#000000" strokeWidth={"2"} type="line" dataKey="value" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
           </div>
 
           {/* PIE */}
-          <div className="bg-white p-6 rounded-xl shadow mt-8">
-            <h3 className="text20 font-semibold mb-6">Pricing Breakdown</h3>
+          <div className="bg-white px-6 py-1 rounded-xl shadow-[0_0_5px_rgba(0,0,0,0.2)] mt-8">
+            <h3 className="text20 font-semibold mt-2 mb-0">Pricing Breakdown</h3>
 
             <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
 
               <div className="flex justify-center w-full lg:w-1/2">
-                <ResponsiveContainer width={400} height={350}>
+                <ResponsiveContainer width={600} height={350}>
                   <PieChart
                     margin={{ top: 20, right: 80, left: 80, bottom: 20 }}
                     style={{ overflow: "visible" }}
