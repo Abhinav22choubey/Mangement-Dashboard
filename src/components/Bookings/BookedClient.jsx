@@ -1,5 +1,5 @@
   import React, { useState } from "react";
-  import { Search, Eye, Filter, Columns2, Crosshair } from "lucide-react";
+  import { Search, Eye, Filter, Columns2,CircleX, Crosshair } from "lucide-react";
   import profile from "../../assets/kanban/profile.jpg";
 
   const clientsData = [
@@ -118,30 +118,30 @@
         <div className="bg-white border border-black/10 rounded-md">
 
           {/* Header */}
-          <div className="border-b border-black/10 px-4 py-2 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div className="border-b  border-black/10 px-5 py-2 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <h2 className="text18 font-medium">All Client</h2>
 
-            <button className="bg-(--primary) text-white px-4 py-2 rounded text14">
+            <button className="bg-(--primary) text-white px-5 py-2 rounded text14">
               Add New Client
             </button>
           </div>
 
           {/* Top Controls */}
-          <div className="px-4 py-2 border-b border-black/10 flex flex-wrap justify-between items-center gap-3">
+          <div className="px-5 py-2 text-black/60 border-b border-black/10 flex flex-wrap justify-between items-center gap-3">
 
             {/* Left controls */}
             <div className="flex flex-wrap items-center gap-2">
               <button className="border border-black/10 p-2 rounded">
-                <Columns2 size={16} />
+                <Columns2 className="text-black/60" size={16} />
               </button>
 
               <button className="border border-black/10 px-3 py-1 rounded flex items-center gap-1">
-                <Filter size={14} /> Filter
+                <Filter className="text-black/60" size={14} /> Filter
               </button>
 
-              <div className="flex items-center gap-2 border border-black/10 rounded-full px-3 py-1 text14">
+              <div className="flex items-center  gap-2 border border-2-black/40 rounded-full px-3 py-1 text14">
                 Newly Launch
-                <span className="cursor-pointer">✕</span>
+                <CircleX size={14} className="text-gray-500" />
               </div>
             </div>
 
