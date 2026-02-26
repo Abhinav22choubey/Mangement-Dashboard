@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   LineChart,
   Line,
@@ -109,6 +110,8 @@ const StatCard = ({ title, value, bg, iconBg, Icon }) => {
 
 // ---------------- MAIN ----------------
 const Booking = () => {
+  
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen">
       <div className="w-full">
@@ -118,7 +121,9 @@ const Booking = () => {
 
           {/* STATS */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <StatCard title="Total Bookings" value="998" bg="bg-blue-50" iconBg="bg-[var(--sky)]" Icon={Building2} />
+            <button onClick={()=>{
+               navigate(`allClient`)
+            }}><StatCard title="Total Bookings" value="998" bg="bg-blue-50" iconBg="bg-[var(--sky)]" Icon={Building2} /></button>
             <StatCard title="Today's New Booking" value="5" bg="bg-yellow-50" iconBg="bg-[var(--yellow)]" Icon={ClipboardList} />
             <StatCard title="Pending Booking" value="15" bg="bg-yellow-50" iconBg="bg-[var(--yellow)]" Icon={ClipboardList} />
             <StatCard title="Cancelled Booking" value="135" bg="bg-orange-50" iconBg="bg-orange-400" Icon={CheckCircle} />
