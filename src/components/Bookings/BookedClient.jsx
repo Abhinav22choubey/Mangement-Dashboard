@@ -1,7 +1,7 @@
   import React, { useState } from "react";
   import { Search, Eye, Filter, Columns2,CircleX, Crosshair } from "lucide-react";
   import profile from "../../assets/kanban/profile.jpg";
-
+ import { useNavigate } from "react-router-dom";
   const clientsData = [
     {
       name: "Rahul Singh",
@@ -111,7 +111,7 @@
     const filteredData = clientsData.filter((c) =>
       c.name.toLowerCase().includes(search.toLowerCase())
     );
-
+    const navigate = useNavigate();
     return (
       <div className="w-full p-1 md:p-1">
         {/* Container */}
@@ -121,7 +121,7 @@
           <div className="border-b  border-black/10 px-5 py-2 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <h2 className="text18 font-medium">All Client</h2>
 
-            <button className="bg-(--primary) text-white px-5 py-2 rounded text14">
+            <button onClick={()=>{navigate('client')}} className="bg-(--primary) text-white px-5 py-2 rounded text14">
               Add New Client
             </button>
           </div>

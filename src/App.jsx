@@ -19,7 +19,7 @@ import Bookings from "./pages/Bookings";
 import BookedClient from "./components/Bookings/BookedClient";
 import "./App.css";
 import AddLeads from "./pages/AddLeads";
-
+import Client from "./components/Bookings/Client/Client.jsx";
 export const App = () => {
   const location = useLocation();
 
@@ -71,10 +71,14 @@ export const App = () => {
             <Route path="kanban" element={<Kanban />} />
             <Route path="add" element={<AddLeads />} />
           </Route>
-          <Route path="Bookings"  >
-            <Route index element={<Bookings />} />
-            <Route path="allClient" element={<BookedClient />} />
-           </Route>
+          <Route path="Bookings" element={<Outlet />}>
+
+            <Route index element={<Bookings/>}/>
+            <Route path="allClient" element={<Outlet/>} >
+              <Route index element={<BookedClient />} />
+              <Route path="client" element={<Client />} />
+            </Route>
+          </Route>
         </Route>
 
         {/* Fallback */}
