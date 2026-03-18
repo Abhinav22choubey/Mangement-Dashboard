@@ -37,20 +37,19 @@ const ClientOverview = ({
   bookingId,
 }) => {
   return (
-    <div className="bg-white rounded-lg border border-gray-100 shadow-sm w-full">
+    <div className="bg-white mt-4 w-full">
 
       {/* Header */}
-      <div className="px-4 sm:px-6 py-3 border-b border-black/5">
-        <h3 className="text15 font-medium text-black">
+      <div className="px-4 sm:px-6 py-2 border-b border-black/5">
+        <h3 className="text16 font-medium text-black">
           Booking Overview
         </h3>
       </div>
 
       {/* Content */}
-      <div className="p-4 sm:p-6">
+      <div className="px-3 py-2 sm:p-6">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-8">
-
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8">
           <InfoItem
             label="Name"
             value={name}

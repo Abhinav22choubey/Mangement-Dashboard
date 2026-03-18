@@ -71,12 +71,12 @@ export const App = () => {
             <Route path="kanban" element={<Kanban />} />
             <Route path="add" element={<AddLeads />} />
           </Route>
-          <Route path="Bookings" element={<Outlet />}>
+          <Route path="Bookings">
 
             <Route index element={<Bookings/>}/>
             <Route path="allClient" element={<Outlet/>} >
               <Route index element={<BookedClient />} />
-              <Route path="client" element={<Client />} />
+              <Route path="client/:id" element={<Client />} />
             </Route>
           </Route>
         </Route>

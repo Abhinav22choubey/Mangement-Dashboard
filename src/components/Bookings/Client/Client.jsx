@@ -1,10 +1,28 @@
 import React from 'react'
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Heading from '../../../common/Heading.jsx';
 import StatusBar from '../../../common/StatusBar.jsx';
 import TabOver from '../../../common/TabOver.jsx';
 import ClientOverview from './ClientOverview.jsx';
+import { clientsData } from '../../../utils/data.js';
+import NotesPanel from '../../../common/NotesPanel.jsx';
+import ProjectDetails from './ProjectDetails.jsx';
+
 function Client() {
+  const { id } = useParams();
+  console.log("Client ID from URL:", id);
+  const {
+    name,
+    project,
+    type,
+    config,
+    status,
+    amount,
+    received,
+    sales,
+  } = clientsData[id]
+  console.log("Client Data:", clientsData[id]);
   const tabs = [
     { name: "Overview", id: "Coverview" },
     { name: "Projects", id: "Cprojects" },
@@ -27,14 +45,23 @@ function Client() {
       <Heading isCancelled={false} />
       <StatusBar steps={steps} />
       <TabOver tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-      <ClientOverview
-        name="Ajay Verma"
-        contact="+91 9874563210"
-        organization="SpriteEra IT Solutions Pvt Ltd"
-        salesPerson="Nihal Singh"
-        bookingDate="5:00 PM, 11 Oct 2025"
-        bookingId="#AFB008263"
-      />
+      <div className='flex flex-row gap-4'>
+        <div className='w-[68%]'>
+          <ClientOverview
+            name={name}
+            contact="+91 9874563210"
+            organization="SpriteEra IT Solutions Pvt Ltd"
+            salesPerson={sales}
+            bookingDate="5:00 PM, 11 Oct 2025"
+            bookingId="#AFB008263"
+          />
+          <ProjectDetails data={clientsData[id]} />
+        </div>
+        <div className='w-[32%] pl-2'>
+          <NotesPanel/>
+        </div>
+      </div>
+
     </div>
   )
 }

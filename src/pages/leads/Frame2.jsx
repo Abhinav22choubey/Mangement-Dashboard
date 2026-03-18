@@ -9,7 +9,7 @@ import {
   Search
 } from "lucide-react";
 
-import { Button1 } from "./Buttons/Button1.jsx";
+import { Button1 } from "../../common/Button1.jsx";
 
 const initialLeads = [
   { id: 1, name: "SpriteEra IT Solution Pvt Ltd", status: "Negotiation", source: "Facebook" },

@@ -19,7 +19,7 @@ import profile from "./assets/profile.jpg";
 import p2 from "./assets/p2.jpg";
 import p3 from "./assets/p3.jpg";
 import p4 from "./assets/p4.jpg";
-import { Badge } from "./Buttons/Button1.jsx";
+import { Badge } from "../../common/Button1.jsx";
 
 const mutedIconClass = "text-gray-400";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Plus, NotepadText, EllipsisVertical } from "lucide-react";
-import profile from "./assets/profile.jpg";
-import { Badge } from "../../common/Button1.jsx";
+import profile from "./../../public/profile.jpg";
+import { Badge } from "./Button1.jsx";
 
 const initialNotes = [
   {
@@ -59,7 +59,7 @@ export default function NotesPanel() {
   };
 
   return (
-    <div className="w-full max-w-sm bg-white mt-4 border border-gray-200 rounded-md">
+    <div className="w-full  bg-white mt-4 ">
 
       {/* Header (original spacing) */}
       <div className="px-4 flex col-auto">
