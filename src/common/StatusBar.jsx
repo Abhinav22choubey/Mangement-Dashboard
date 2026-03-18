@@ -1,18 +1,19 @@
 import React from "react";
-import { Check, AlertCircle } from "lucide-react";
-
-
+import { Check, AlertCircle, XCircle } from "lucide-react";
 
 export default function StatusBar({steps}) {
   return (
     <div className="w-full overflow-hidden flex justify-center">
       <div className="w-full relative max-w-[95%]">
 
-        {/* Bar */}
+        {/* Progress Bar */}
         <div className="flex items-center justify-between">
           {steps.map((step, index) => {
             const isDone = step.status === "done";
             const isActive = step.status === "active";
+            const isCancelled = step.status === "cancelled";
+
+            const nextStep = steps[index + 1];
 
             return (
               <div
@@ -22,16 +23,25 @@ export default function StatusBar({steps}) {
                 {/* Circle */}
                 <div
                   className={`shrink-0 w-[22px] h-[22px] sm:w-[26px] sm:h-[26px] rounded-full flex items-center justify-center z-10
-                  ${isDone || isActive ? "bg-[#00AD28]" : "bg-[#666E81]"}`}
+                  ${
+                    isCancelled
+                      ? "bg-red-500"
+                      : isDone || isActive
+                      ? "bg-[#00AD28]"
+                      : "bg-[#666E81]"
+                  }`}
                 >
                   {isDone && (
-                    <Check size={14} className="text-white sm:w-4 sm:h-4" />
+                    <Check className="text-white w-4 h-4" />
                   )}
                   {isActive && (
-                    <AlertCircle size={14} className="text-white sm:w-4 sm:h-4" />
+                    <AlertCircle className="text-white w-4 h-4" />
+                  )}
+                  {isCancelled && (
+                    <XCircle className="text-white w-4 h-4" />
                   )}
                   {step.status === "pending" && (
-                    <span className="text-white text12 sm:text14">
+                    <span className="text-white text-xs sm:text-sm">
                       {step.id}
                     </span>
                   )}
@@ -43,10 +53,19 @@ export default function StatusBar({steps}) {
                     <div
                       className={`h-[2px] sm:h-[3px]
                       ${
-                        index < 3
+                        // If either current OR next is cancelled → red solid
+                        isCancelled || nextStep?.status === "cancelled"
+                          ? "bg-red-500"
+
+                          // If next step is done → green solid
+                          : nextStep?.status === "done"
                           ? "bg-[#00AD28]"
-                          : index === 3
+
+                          // If next step is active → dashed green
+                          : nextStep?.status === "active"
                           ? "border-t-[2px] sm:border-t-[3px] border-dashed border-[#00AD28]"
+
+                          // Otherwise pending → grey dashed
                           : "border-t-[2px] sm:border-t-[3px] border-dashed border-[#666E81]"
                       }`}
                     />
@@ -58,7 +77,7 @@ export default function StatusBar({steps}) {
         </div>
 
         {/* Labels */}
-        <div className="flex justify-between pr-4 mt-2 text12 sm:text14 text-black">
+        <div className="flex justify-between pr-4 mt-2 text-xs sm:text-sm text-black">
           {steps.map((step) => (
             <div
               key={step.id}

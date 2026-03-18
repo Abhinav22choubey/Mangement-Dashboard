@@ -1,7 +1,9 @@
 import React from "react";
 import { Layers, Crown, Briefcase } from "lucide-react";
 
-function Heading() {
+function Heading({
+  isCancelled 
+}) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between p-4 rounded-md">
       
@@ -17,12 +19,16 @@ function Heading() {
 
       <div className="flex justify-center gap-2">
 
-        <button className="flex items-center gap-2 px-3 py-1 text14 text-white rounded bg-gradient-to-r from-yellow-300 to-yellow-600">
+        {!isCancelled&&(<button className="flex items-center gap-2 px-3 py-1 text14 text-white rounded bg-gradient-to-r from-yellow-300 to-yellow-600">
           <Crown size={16} /> Update Status
-        </button>
+        </button>)}
+
+        {!isCancelled&&(<button className="flex items-center gap-2 px-3 py-1 text14 text-white rounded bg-red-500">
+          Cancel Booking
+        </button>)}
 
         <button className="flex items-center gap-2 px-3 py-1 text14 text-white rounded bg-blue-500">
-          <Briefcase size={16} /> Convert to Client
+          Client Details
         </button>
 
       </div>
