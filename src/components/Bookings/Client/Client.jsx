@@ -12,6 +12,7 @@ import PricingDetails from './PricingDetails.jsx';
 import TimelineActivity from '../../../common/TimelineActivity.jsx';
 import RemindersCard from '../../../common/RemindersCard.jsx';
 import Projects from './Projects.jsx';
+import PaymentHistory from './PaymentHistory.jsx';
 function Client() {
   const { id } = useParams();
   console.log("Client ID from URL:", id);
@@ -72,7 +73,19 @@ function Client() {
       {activeTab === "Cprojects" && <div className='flex flex-row gap-4'>
         <div className='w-full'>
           <Projects data={clientsData[id]} />
-        </div> </div>}
+        </div> </div>
+      }
+      {/* Payment History Tab */}
+      {
+        activeTab === "paymentHistory" && <div className='flex'>
+          <PaymentHistory data={clientsData[id]} />
+        </div>
+      }
+      {/* Timeline Activity */}
+      {activeTab === "activity" && <div className='flex'>
+        <TimelineActivity />
+      </div>}
+
     </div>
   )
 }
