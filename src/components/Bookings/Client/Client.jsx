@@ -4,13 +4,14 @@ import { useParams } from 'react-router-dom';
 import Heading from '../../../common/Heading.jsx';
 import StatusBar from '../../../common/StatusBar.jsx';
 import TabOver from '../../../common/TabOver.jsx';
-import ClientOverview from './ClientOverview.jsx';
+import BookingOverview from './BookingOverview.jsx';
 import { clientsData } from '../../../utils/data.js';
 import NotesPanel from '../../../common/NotesPanel.jsx';
 import ProjectDetails from './ProjectDetails.jsx';
 import PricingDetails from './PricingDetails.jsx';
 import TimelineActivity from '../../../common/TimelineActivity.jsx';
 import RemindersCard from '../../../common/RemindersCard.jsx';
+import Projects from './Projects.jsx';
 function Client() {
   const { id } = useParams();
   console.log("Client ID from URL:", id);
@@ -47,9 +48,10 @@ function Client() {
       <Heading isCancelled={false} />
       <StatusBar steps={steps} />
       <TabOver tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className='flex flex-row gap-4'>
+      {/* Overview Tab */}
+      {activeTab === "Coverview" && <div className='flex flex-row gap-4'>
         <div className='w-[68%]'>
-          <ClientOverview
+          <BookingOverview
             name={name}
             contact="+91 9874563210"
             organization="SpriteEra IT Solutions Pvt Ltd"
@@ -62,11 +64,15 @@ function Client() {
           <TimelineActivity />
         </div>
         <div className='w-[32%] pl-2'>
-          <NotesPanel/>
-          <RemindersCard/>
+          <NotesPanel />
+          <RemindersCard />
         </div>
-      </div>
-
+      </div>}
+      {/* Projects Tab */}
+      {activeTab === "Cprojects" && <div className='flex flex-row gap-4'>
+        <div className='w-full'>
+          <Projects data={clientsData[id]} />
+        </div> </div>}
     </div>
   )
 }

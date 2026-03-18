@@ -28,7 +28,7 @@ const SalesPerson = ({ name }) => {
   );
 };
 
-const ClientOverview = ({
+const BookingOverview = ({
   name ,
   contact ,
   organization ,
@@ -87,4 +87,4 @@ const ClientOverview = ({
   );
 };
 
-export default ClientOverview;
+export default BookingOverview;
