@@ -8,7 +8,9 @@ import ClientOverview from './ClientOverview.jsx';
 import { clientsData } from '../../../utils/data.js';
 import NotesPanel from '../../../common/NotesPanel.jsx';
 import ProjectDetails from './ProjectDetails.jsx';
-
+import PricingDetails from './PricingDetails.jsx';
+import TimelineActivity from '../../../common/TimelineActivity.jsx';
+import RemindersCard from '../../../common/RemindersCard.jsx';
 function Client() {
   const { id } = useParams();
   console.log("Client ID from URL:", id);
@@ -56,9 +58,12 @@ function Client() {
             bookingId="#AFB008263"
           />
           <ProjectDetails data={clientsData[id]} />
+          <PricingDetails data={clientsData[id]} />
+          <TimelineActivity />
         </div>
         <div className='w-[32%] pl-2'>
           <NotesPanel/>
+          <RemindersCard/>
         </div>
       </div>
 
